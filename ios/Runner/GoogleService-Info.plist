@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>206257440396-0n1o9ril5usdretu18voq1n0rcee7fja.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.206257440396-0n1o9ril5usdretu18voq1n0rcee7fja</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBk5OEVwT3lXVToBFsyuX43wmd-UVHoy60</string>
+	<key>GCM_SENDER_ID</key>
+	<string>206257440396</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>dev.yaksh.hamarasehyog</string>
+	<key>PROJECT_ID</key>
+	<string>hamara-sehyog</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hamara-sehyog.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:206257440396:ios:b53a3660c4bc0d554f9da9</string>
+</dict>
+</plist>
