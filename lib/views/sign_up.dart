@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
+import 'package:hamarasehyog/components/error_dialog.dart';
 import 'package:hamarasehyog/components/square_tile.dart';
 import 'package:hamarasehyog/components/text_fields.dart';
 import 'package:hamarasehyog/constants/routes.dart';
@@ -52,13 +53,19 @@ class _SignUpState extends State<SignUp> {
               children: [
                 // ---- sign up title ---- //
                 BigText(text: "Sign Up.", color: AppColors.darkGrey, size: 55),
-          
+
                 // ---- white spaces ---- //
                 SizedBox(height: 40),
-          
+
                 // ---- name field ---- //
-                MyTextFields(text: "Name", obscureText: false, enableSuggestions: true, autocorrect: false,controller: _name,),
-          
+                MyTextFields(
+                  text: "Name",
+                  obscureText: false,
+                  enableSuggestions: true,
+                  autocorrect: false,
+                  controller: _name,
+                ),
+
                 // ---- email field ---- //
                 MyTextFields(
                   text: "Email",
@@ -68,7 +75,7 @@ class _SignUpState extends State<SignUp> {
                   inputType: TextInputType.emailAddress,
                   controller: _email,
                 ),
-          
+
                 // ---- password field ---- //
                 MyTextFields(
                   text: "Password",
@@ -77,7 +84,7 @@ class _SignUpState extends State<SignUp> {
                   autocorrect: false,
                   controller: _password,
                 ),
-          
+
                 // // ---- phone field ---- //
                 // MyTextFields(
                 //   text: "Phone",
@@ -86,38 +93,47 @@ class _SignUpState extends State<SignUp> {
                 //   autocorrect: false,
                 //   controller: _phone,
                 // ),
-          
+
                 // ---- white spaces ---- //
                 SizedBox(height: 40),
-          
+
                 // ---- sign up button ---- //
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:25.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: MaterialButton(
                     onPressed: () async {
                       final email = _email!.text;
                       final password = _password!.text;
                       try {
-                        final userCred =
-                            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                        await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
                           email: email,
                           password: password,
                         );
-                        print(userCred);
+
+                        // ---- when clicked on sign up button ---- //
+                        final user = FirebaseAuth.instance.currentUser;
+                        user?.sendEmailVerification();
+                        Navigator.of(context).pushNamed(
+                          verifyEmailRoute,
+                        );
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
-                          print('Weak-password, please modify it.');
+                          showErrorDialog(
+                              context, 'Weak-password, please modify it.');
                         } else if (e.code == "channel-error") {
-                          print('Email or password is empty, kindly check again.');
+                          showErrorDialog(context,
+                              'Email or password is empty, kindly check again.');
                         } else if (e.code == "email-already-in-use") {
-                          print('Email already in use.');
+                          showErrorDialog(context, 'Email already in use.');
                         } else if (e.code == "invalid-email") {
-                          print('Invalid email, please check again.');
+                          showErrorDialog(
+                              context, 'Invalid email, please check again.');
                         } else {
-                          print('Error: ${e.code}');
+                          showErrorDialog(context, 'Error: ${e.code}');
                         }
                       } catch (e) {
-                        print(e.toString());
+                        showErrorDialog(context, e.toString());
                       }
                     },
                     //* styles of button
@@ -134,10 +150,10 @@ class _SignUpState extends State<SignUp> {
                             fontSize: 22)),
                   ),
                 ),
-          
+
                 // ---- white spaces ---- //
                 SizedBox(height: 40),
-          
+
                 // ---- or continue with --- //
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 50.0),
@@ -165,40 +181,42 @@ class _SignUpState extends State<SignUp> {
                     ],
                   ),
                 ),
-          
+
                 // white spaces
                 SizedBox(height: 50),
-          
+
                 // ---- log in options ---- //
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: SquareTile(imagePath: 'assets/images/google.png'),
+                      child: SquareTile(imagePath: 'assets/images/google.png',height: 40,),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: SquareTile(imagePath: 'assets/images/facebook.png'),
+                      child:
+                          SquareTile(imagePath: 'assets/images/facebook.png',height: 40,),
                     ),
                   ],
                 ),
-          
+
                 // ---- white spaces ---- //
                 SizedBox(height: 40),
-                
+
                 // ---- already have an account? login route ---- //
                 TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                        loginRoute,
-                        (route) => false,
-                      );
-                    },
-                    child: const Text(
-                      "Already have an account? Login here!",
-                      style: TextStyle(color: AppColors.mainColor),
-                  ),)
+                  onPressed: () {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      loginRoute,
+                      (route) => false,
+                    );
+                  },
+                  child: const Text(
+                    "Already have an account? Login here!",
+                    style: TextStyle(color: AppColors.mainColor),
+                  ),
+                )
               ],
             ),
           ),

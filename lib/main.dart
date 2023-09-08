@@ -1,8 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hamarasehyog/constants/routes.dart';
-import 'package:hamarasehyog/utils/colors.dart';
+import 'package:hamarasehyog/views/detail_view.dart';
 import 'package:hamarasehyog/views/log_in.dart';
 import 'package:hamarasehyog/views/sign_up.dart';
 import 'package:hamarasehyog/views/verify_email_view.dart';
@@ -24,6 +23,8 @@ void main() {
         routes: {
           signupRoute: (context) => const SignUp(),
           loginRoute: (context) => const LogInView(),
+          detailsRoute: (context) => const DetailsView(),
+          verifyEmailRoute: (context) => const VerifyEmailView(),
         }),
   );
 }
@@ -40,18 +41,17 @@ class HomePage extends StatelessWidget {
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
-              return const LogInView();
+              return const VerifyEmailView();
             // final user = FirebaseAuth.instance.currentUser;
             // if (user != null) {
             //   if (user.emailVerified) {
-            //     print('email is verified');
+            //     return const DetailsView();
             //   } else {
             //     return const VerifyEmailView();
             //   }
             // } else {
             //   return const LogInView();
             // }
-            // return const Text("Done");
             default:
               // write loading code here
               return const CircularProgressIndicator();

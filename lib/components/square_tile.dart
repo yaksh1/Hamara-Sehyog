@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 class SquareTile extends StatelessWidget {
   final String imagePath;
-  const SquareTile({super.key, required this.imagePath});
+  final double? height;
+  const SquareTile({super.key, required this.imagePath, this.height = 60});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       // padding: EdgeInsets.all(15),
-      height: 60,
+      height: height,
       child: Image.asset(imagePath),
     );
   }
