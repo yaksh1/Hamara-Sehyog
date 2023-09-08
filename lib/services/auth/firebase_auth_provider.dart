@@ -31,7 +31,7 @@ class FirebaseAuthProvider implements AuthProvider {
       } else if (e.code == "invalid-email") {
         throw InvalidEmailAuthException();
       } else {
-        GenericAuthException();
+        throw GenericAuthException();
       }
     } catch (_) {
       throw GenericAuthException();
@@ -50,20 +50,50 @@ class FirebaseAuthProvider implements AuthProvider {
   }
 
   @override
-  Future<AuthUser?> logIn({required String email, required String password}) {
+  Future<AuthUser?> logIn(
+      {required String email, required String password}) async {
     // implement logIn
-    throw UnimplementedError();
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      final user = currentUser;
+      if (user != null) {
+        return user;
+      } else {
+        throw UserNotLoggedInAuthException();
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw UserNotFoundAuthException();
+      } else if (e.code == "wrong-password") {
+        throw WrongPasswordAuthException();
+      } else {
+        throw GenericAuthException();
+      }
+    } catch (_) {
+      throw GenericAuthException();
+    }
   }
 
   @override
-  Future<void> logOut() {
+  Future<void> logOut() async {
     // implement logOut
-    throw UnimplementedError();
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await FirebaseAuth.instance.signOut();
+    } else {
+      throw UserNotLoggedInAuthException();
+    }
   }
 
   @override
-  Future<void> sendEmailVerification() {
+  Future<void> sendEmailVerification() async {
     // implement sendEmailVerification
-    throw UnimplementedError();
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await user.sendEmailVerification();
+    } else {
+      throw UserNotLoggedInAuthException();
+    }
   }
 }
