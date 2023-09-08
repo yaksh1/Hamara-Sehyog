@@ -1,13 +1,14 @@
 // ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/error_dialog.dart';
 import 'package:hamarasehyog/components/small_grey_text.dart';
 import 'package:hamarasehyog/components/square_tile.dart';
 import 'package:hamarasehyog/components/text_fields.dart';
 import 'package:hamarasehyog/constants/routes.dart';
+import 'package:hamarasehyog/services/auth/auth_exceptions.dart';
+import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:logger/logger.dart';
 
@@ -102,38 +103,34 @@ class _LogInViewState extends State<LogInView> {
                       final email = _email!.text;
                       final password = _password!.text;
                       try {
-                        await FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: email,
-                          password: password,
-                        );
-                        final user = FirebaseAuth.instance.currentUser;
-                        if(user?.emailVerified ?? false){
+                        AuthService.firebase()
+                            .logIn(email: email, password: password);
+                        await AuthService.firebase()
+                            .logIn(email: email, password: password);
+                        final user = AuthService.firebase().currentUser;
+                        if (user?.isEmailVerified ?? false) {
                           // user's email is verified
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          detailsRoute,
-                          (route) => false,
-                        );
-                        }else{
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            detailsRoute,
+                            (route) => false,
+                          );
+                        } else {
                           // user's email is not verified
                           Navigator.of(context).pushNamedAndRemoveUntil(
                             verifyEmailRoute,
                             (route) => false,
                           );
                         }
-                      } on FirebaseAuthException catch (e) {
-                        if (e.code == 'user-not-found') {
-                          showErrorDialog(context,
-                              'User not found. Please double-check your entered details');
-                          // logger.w(
-                          //     'User not found. Please double-check your entered details');
-                        } else if (e.code == "wrong-password") {
-                          showErrorDialog(context, 'Incorrect password');
-                        } else {
-                          showErrorDialog(context, 'Error: ${e.code}');
-                        }
-                      } catch (e) {
-                        showErrorDialog(context, e.toString());
+                      } on UserNotFoundAuthException{
+                        showErrorDialog(context,
+                            'User not found. Please double-check your entered details');
+                      } on WrongPasswordAuthException{
+                        showErrorDialog(context,
+                            'Wrong Password. Please check again.');
+                      } on GenericAuthException{
+                        showErrorDialog(context, "Authentication error");
                       }
+                      
                     },
 
                     //* styles of button
@@ -191,12 +188,17 @@ class _LogInViewState extends State<LogInView> {
                   children: const [
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 15.0),
-                      child: SquareTile(imagePath: 'assets/images/google.png',height: 40,),
+                      child: SquareTile(
+                        imagePath: 'assets/images/google.png',
+                        height: 40,
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 15.0),
-                      child:
-                          SquareTile(imagePath: 'assets/images/facebook.png',height: 40,),
+                      child: SquareTile(
+                        imagePath: 'assets/images/facebook.png',
+                        height: 40,
+                      ),
                     ),
                   ],
                 ),

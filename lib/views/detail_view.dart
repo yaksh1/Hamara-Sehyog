@@ -1,12 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hamarasehyog/constants/routes.dart';
+import 'package:hamarasehyog/enums/menu_action.dart';
+import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:logger/logger.dart';
-
-enum MenuAction { logout }
 
 class DetailsView extends StatefulWidget {
   const DetailsView({super.key});
@@ -29,7 +28,7 @@ class _DetailsViewState extends State<DetailsView> {
                 case MenuAction.logout:
                   final shouldLogout = await showLogOutDialog(context);
                   if (shouldLogout) {
-                    FirebaseAuth.instance.signOut();
+                    await AuthService.firebase().logOut();
                     Navigator.of(context)
                         .pushNamedAndRemoveUntil(loginRoute, (route) => false);
                   }

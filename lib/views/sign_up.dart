@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/error_dialog.dart';
 import 'package:hamarasehyog/components/square_tile.dart';
 import 'package:hamarasehyog/components/text_fields.dart';
 import 'package:hamarasehyog/constants/routes.dart';
+import 'package:hamarasehyog/services/auth/auth_exceptions.dart';
+import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 
 class SignUp extends StatefulWidget {
@@ -105,36 +106,29 @@ class _SignUpState extends State<SignUp> {
                       final email = _email!.text;
                       final password = _password!.text;
                       try {
-                        await FirebaseAuth.instance
-                            .createUserWithEmailAndPassword(
-                          email: email,
-                          password: password,
-                        );
+                        await AuthService.firebase()
+                            .createUser(email: email, password: password);
 
                         // ---- when clicked on sign up button ---- //
-                        final user = FirebaseAuth.instance.currentUser;
-                        user?.sendEmailVerification();
+                        AuthService.firebase().sendEmailVerification();
                         Navigator.of(context).pushNamed(
                           verifyEmailRoute,
                         );
-                      } on FirebaseAuthException catch (e) {
-                        if (e.code == 'weak-password') {
-                          showErrorDialog(
-                              context, 'Weak-password, please modify it.');
-                        } else if (e.code == "channel-error") {
-                          showErrorDialog(context,
-                              'Email or password is empty, kindly check again.');
-                        } else if (e.code == "email-already-in-use") {
-                          showErrorDialog(context, 'Email already in use.');
-                        } else if (e.code == "invalid-email") {
-                          showErrorDialog(
-                              context, 'Invalid email, please check again.');
-                        } else {
-                          showErrorDialog(context, 'Error: ${e.code}');
-                        }
-                      } catch (e) {
-                        showErrorDialog(context, e.toString());
+                      } on WeakPasswordAuthException {
+                        showErrorDialog(
+                            context, 'Weak-password, please modify it.');
+                      } on EmptyFieldAuthException {
+                        showErrorDialog(context,
+                            'Email or password is empty, kindly check again.');
+                      } on EmailAlreadyInUseAuthException {
+                         showErrorDialog(context, 'Email already in use.');
+                      } on InvalidEmailAuthException {
+                        showErrorDialog(
+                            context, 'Invalid email, please check again.');
+                      } on GenericAuthException {
+                        showErrorDialog(context,"Failed to register");
                       }
+                     
                     },
                     //* styles of button
                     textColor: AppColors.grey,
@@ -191,12 +185,17 @@ class _SignUpState extends State<SignUp> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: SquareTile(imagePath: 'assets/images/google.png',height: 40,),
+                      child: SquareTile(
+                        imagePath: 'assets/images/google.png',
+                        height: 40,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child:
-                          SquareTile(imagePath: 'assets/images/facebook.png',height: 40,),
+                      child: SquareTile(
+                        imagePath: 'assets/images/facebook.png',
+                        height: 40,
+                      ),
                     ),
                   ],
                 ),
