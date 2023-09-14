@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamarasehyog/constants/routes.dart';
 import 'package:hamarasehyog/services/auth/auth_service.dart';
+import 'package:hamarasehyog/views/about%20us/about_us.dart';
 import 'package:hamarasehyog/views/donation/donation.dart';
 import 'package:hamarasehyog/views/log_in.dart';
 import 'package:hamarasehyog/views/main_ui_page/main_ui_page.dart';
@@ -29,6 +30,7 @@ void main() async {
         transitionDuration: const Duration(milliseconds: 500),
         // home: isViewed!=0? OnBoardingView() : const HomePage(),
         home: SplashScreen(),
+        // home: const SplashScreen(),
         routes: {
           signupRoute: (context) => const SignUp(),
           loginRoute: (context) => const LogInView(), 

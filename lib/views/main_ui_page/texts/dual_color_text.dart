@@ -7,13 +7,15 @@ class DualColorText extends StatelessWidget {
     super.key,
     required this.text1,
     required this.text2,
-    this.size = 30, this.align =TextAlign.center ,
+    this.size = 30,
+    this.align = TextAlign.center, this.color = AppColors.grey,
   });
 
   final String text1;
   final String text2;
   final double size;
   final TextAlign align;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class DualColorText extends StatelessWidget {
         style: GoogleFonts.openSans(
           textStyle: TextStyle(
             fontSize: size,
-            color: AppColors.grey,
+            color: color,
             fontWeight: FontWeight.w700,
           ),
         ),

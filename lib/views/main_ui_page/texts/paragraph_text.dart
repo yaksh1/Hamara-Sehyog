@@ -10,13 +10,14 @@ class ParagraphText extends StatelessWidget {
     required this.width10,
     required this.text,
     this.align = TextAlign.justify,
-    this.size=13,
+    this.size = 13, this.color = AppColors.grey,
   });
 
   final double width10;
   final String text;
   final TextAlign align;
   final double size;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class ParagraphText extends StatelessWidget {
         text: text,
         style: GoogleFonts.openSans(
           textStyle: TextStyle(
-            color: AppColors.grey,
+            color: color,
             fontSize: size,
           ),
         ),

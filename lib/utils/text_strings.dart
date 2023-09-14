@@ -17,8 +17,6 @@ const sponsorship = "Sponsorship";
 const sponsorshipDetails =
     "Support students by sponsoring their education. Your contributions can cover tuition fees, books, and other essential resources, enabling individuals to pursue their dreams.";
 
-
-
 // donating segments
 const ghyanDhyan = "Ghyan Dhyan";
 const ghyanDhyanDetails =
@@ -36,13 +34,22 @@ const money = "Monetary Contributions";
 const moneyDetails =
     "Make a financial impact by donating funds that will be used  for 1.	Ration & Food 2.	Education 3.	Hygiene and health 4.	Tree Plantation 5.	Your contributions can help us reach more people and provide consistent support.Your contributions can cover tuition fees, books, enabling individuals to pursue their dreams. You can also specify where do you want this money to be spent. Donate";
 
-// onboarding pages
+// about us
 const ourMissionText =
     "Our mission is to identify the affected communities, provide them with meals, facilitate basic education for children and the underprivileged in those communitie.";
 const ourVisionText =
     "Our vision is to create social wellness among society and make the underprivileged population affected mostly by the pandemic become self-reliant on a sustainable basis and enable them to live a life with dignity.";
 const flexibilityText =
     "Donate using multiple ways like Ration,hygiene,products,saplings,books,education sponsorship and even monthly contribution";
+const ourGoalsText =
+    "Our overarching goal is also to improve the living situation of the most vulnerable population, especially the ones falling below poverty line and are worst affected by the ongoing pandemic or other natural calamities, by helping them find new opportunities or develop new skills to become economically self-reliant.";
+const objectives1 = "●	To support the identified individuals and families affected by lockdowns with meals and other essentials for the next 3 to 6 months, until the regular means of livelihood is restored";
+const objectives2 =
+    "●	To support affected underprivileged children with home/ remote schooling and arranging for financial sustainable solution to enroll/ continue their education - for the next 1 year";
+const objectives3 =
+    "●	To provide information and help benefit from pandemic support offered by the  government schemes in the next 6 months and sanitation related benefit schemes in the next 12 months for the target community.";
+const objectives4 =
+    "●	To provide and setup a self-sustained model for imparting sanitary education and products to women of the target community in the next 12 months";
 
 // forgot password strings
 const forgotPasswordTitle = "Select One!";

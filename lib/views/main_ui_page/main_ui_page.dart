@@ -13,6 +13,7 @@ import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/dimensions.dart';
 import 'package:hamarasehyog/utils/image_strings.dart';
 import 'package:hamarasehyog/utils/text_strings.dart';
+import 'package:hamarasehyog/views/about%20us/about_us.dart';
 import 'package:hamarasehyog/views/donation/donation.dart';
 import 'package:hamarasehyog/views/join%20us/join_us.dart';
 import 'package:hamarasehyog/views/log_in.dart';
@@ -39,27 +40,12 @@ class _MainUIState extends State<MainUI> {
   Widget build(BuildContext context) {
     // print("current width is " + MediaQuery.of(context).size.width.toString());
     return Scaffold(
-      // side menu
-      // drawer: Drawer(
-      //   child: SingleChildScrollView(
-      //     physics: BouncingScrollPhysics(),
-      //     child: Container(
-      //       child: Column(
-      //         children: [
-      //           // MyHeaderDrawer(),
-      //           SizedBox(
-      //             height: 50,
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
       // background color of page
       backgroundColor: AppColors.secondaryBlack,
       // header
       appBar: AppBar(
         title: Image.asset(appLogo2),
+        automaticallyImplyLeading: false,
         // centerTitle: true,
         // automaticallyImplyLeading: false,
         backgroundColor: AppColors.primaryBlack,
@@ -90,14 +76,18 @@ class _MainUIState extends State<MainUI> {
                   if (shouldLogout) {
                     await AuthService.firebase().logOut();
                     // ignore: use_build_context_synchronously
-                    Get.to(()=> LogInView());
+                    Get.to(() => LogInView());
                   }
+                case MenuAction.aboutUs:
+                  Get.to(() => AboutUs());
               }
             },
             itemBuilder: (context) {
               return [
                 const PopupMenuItem(
                     value: MenuAction.logout, child: Text("Logout")),
+                const PopupMenuItem(
+                    value: MenuAction.aboutUs, child: Text("About Us")),
                 // const PopupMenuItem(
                 //     value: MenuAction.favorites, child: Text("Favorites")),
               ];
