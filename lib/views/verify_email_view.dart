@@ -51,7 +51,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                           SmallText(
                             text:
                                 "We've sent you an email verification. Please confirm your email address.",
-                            size: 30,
+                            size: 20,
                             color: AppColors.primaryBlack,
                           ),
                           SizedBox(
@@ -60,7 +60,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                           SmallText(
                             text:
                                 "If you haven't received a verification yet. click below.",
-                            size: 30,
+                            size: 20,
                             color: AppColors.primaryBlack,
                           ),
                         ],

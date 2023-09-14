@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/error_dialog.dart';
 import 'package:hamarasehyog/components/small_grey_text.dart';
+import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/components/square_tile.dart';
 import 'package:hamarasehyog/components/text_fields.dart';
 import 'package:hamarasehyog/constants/routes.dart';
 import 'package:hamarasehyog/services/auth/auth_exceptions.dart';
 import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
+import 'package:hamarasehyog/utils/text_strings.dart';
+import 'package:hamarasehyog/views/forget_password/forgot_pass_option.dart';
+import 'package:hamarasehyog/views/forget_password/forgot_password_btn_widget.dart';
 import 'package:logger/logger.dart';
 
 class LogInView extends StatefulWidget {
@@ -84,11 +88,17 @@ class _LogInViewState extends State<LogInView> {
                 ),
 
                 //---- forgot password? ---- //
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 13.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [SmallGreyText(text: 'Forgot Password?')],
+                    children: [
+                      TextButton(
+                          onPressed: () {
+                            ForgotPasswordScreen.ForgotPasswordBottomSheet(context);
+                          },
+                          child: SmallGreyText(text: "Forgot Password?"))
+                    ],
                   ),
                 ),
 
@@ -111,7 +121,7 @@ class _LogInViewState extends State<LogInView> {
                         if (user?.isEmailVerified ?? false) {
                           // user's email is verified
                           Navigator.of(context).pushNamedAndRemoveUntil(
-                            detailsRoute,
+                            mainUIRoute,
                             (route) => false,
                           );
                         } else {
@@ -121,16 +131,15 @@ class _LogInViewState extends State<LogInView> {
                             (route) => false,
                           );
                         }
-                      } on UserNotFoundAuthException{
+                      } on UserNotFoundAuthException {
                         showErrorDialog(context,
                             'User not found. Please double-check your entered details');
-                      } on WrongPasswordAuthException{
-                        showErrorDialog(context,
-                            'Wrong Password. Please check again.');
-                      } on GenericAuthException{
+                      } on WrongPasswordAuthException {
+                        showErrorDialog(
+                            context, 'Wrong Password. Please check again.');
+                      } on GenericAuthException {
                         showErrorDialog(context, "Authentication error");
                       }
-                      
                     },
 
                     //* styles of button
@@ -226,4 +235,8 @@ class _LogInViewState extends State<LogInView> {
       ),
     );
   }
+
+  
 }
+
+

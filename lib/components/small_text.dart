@@ -5,25 +5,30 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 
 class SmallText extends StatelessWidget {
-  Color? color;
+  final Color? color;
   final String text;
-  double size;
-  double height;
-  SmallText(
+  final double size;
+  final double height;
+  final TextAlign? alignment;
+  final FontWeight? weight;
+  const SmallText(
       {super.key,
-      this.color = AppColors.darkGrey,
+      this.color = AppColors.primaryBlack,
       required this.text,
-      this.size = 12,
-      this.height = 1.2});
+      this.size = 18,
+      this.height = 1.2,
+      this.weight = FontWeight.w500, this.alignment = TextAlign.left});
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
-        style: GoogleFonts.poppins(
+        textAlign: alignment,
+        style: GoogleFonts.openSans(
             textStyle: TextStyle(
           color: color,
           fontSize: size,
           height: height,
+          fontWeight: weight,
         )));
   }
 }

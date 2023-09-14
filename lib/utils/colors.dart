@@ -11,5 +11,12 @@ class AppColors {
   static const Color darkOrange = Color(0xFFFF662D);
   static const Color buttonBackgroundColor = Color(0xFFFF7629);
   static const Color signColor = Color(0xFFccc7c5);
-  static const Color titleColor = Color(0xFF5c524f);
+  static const Color onBoardingScreen = Color(0xFFFCCB9D);
+  static const Color secondaryBlack = Color(0xff212327);
+  // static const Color secondaryBlack = Color.fromARGB(255, 20, 21, 24);
+
+
+  static const Color onBoardingPage1Color = Color(0xFFFCCB9D);
+  static const Color onBoardingPage2Color = Color(0xFFFDDCDF);
+  static const Color onBoardingPage3Color = Color(0xFFFFDCBD);
 }
