@@ -22,14 +22,13 @@ class _AboutUsState extends State<AboutUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Color.fromARGB(255, 241, 237, 237),
+      title:  BigText(text: "About Us", color: AppColors.mainColor,size: width10*3,),
+      centerTitle: true,
       ),
-      backgroundColor: Color.fromARGB(255, 241, 237, 237),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
           children: [
-            BigText(text: "About Us", color: AppColors.mainColor),
             SizedBox(height: height10*2,),
             Padding(
               padding: EdgeInsets.symmetric(horizontal:height10*1.5),

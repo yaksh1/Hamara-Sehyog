@@ -15,6 +15,7 @@ import 'package:hamarasehyog/utils/image_strings.dart';
 import 'package:hamarasehyog/utils/text_strings.dart';
 import 'package:hamarasehyog/views/about%20us/about_us.dart';
 import 'package:hamarasehyog/views/donation/donation.dart';
+import 'package:hamarasehyog/views/gallery/gallery.dart';
 import 'package:hamarasehyog/views/join%20us/join_us.dart';
 import 'package:hamarasehyog/views/log_in.dart';
 import 'package:hamarasehyog/views/main_ui_page/categories/categories.dart';
@@ -22,6 +23,8 @@ import 'package:hamarasehyog/views/main_ui_page/texts/paragraph_text.dart';
 import 'package:hamarasehyog/views/main_ui_page/navbar/nav_bar.dart';
 import 'package:hamarasehyog/views/main_ui_page/slide_show/slide_show.dart';
 import 'package:hamarasehyog/views/main_ui_page/texts/dual_color_text.dart';
+import 'package:hamarasehyog/views/members/members.dart';
+import 'package:hamarasehyog/views/projects/projects.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class MainUI extends StatefulWidget {
@@ -41,15 +44,16 @@ class _MainUIState extends State<MainUI> {
     // print("current width is " + MediaQuery.of(context).size.width.toString());
     return Scaffold(
       // background color of page
-      backgroundColor: AppColors.secondaryBlack,
+      backgroundColor: Color(0xFFF5F5F5),
+
       // header
       appBar: AppBar(
         title: Image.asset(appLogo2),
         automaticallyImplyLeading: false,
         // centerTitle: true,
         // automaticallyImplyLeading: false,
-        backgroundColor: AppColors.primaryBlack,
-        iconTheme: IconThemeData(color: AppColors.grey, size: 35),
+        backgroundColor: Color(0xFFF5F5F5),
+        iconTheme: IconThemeData(color: AppColors.secondaryBlack, size: 35),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
@@ -80,14 +84,31 @@ class _MainUIState extends State<MainUI> {
                   }
                 case MenuAction.aboutUs:
                   Get.to(() => AboutUs());
+                case MenuAction.members:
+                  Get.to(() => Members());
+                case MenuAction.projects:
+                  Get.to(() => Projects());
+                case MenuAction.joinUs:
+                  Get.to(() => JoinUs());
+
+                case MenuAction.gallery:
+                  Get.to(() => Gallery());
               }
             },
             itemBuilder: (context) {
               return [
                 const PopupMenuItem(
-                    value: MenuAction.logout, child: Text("Logout")),
+                    value: MenuAction.projects, child: Text("Our Projects")),
+                const PopupMenuItem(
+                    value: MenuAction.gallery, child: Text("Gallery")),
+                const PopupMenuItem(
+                    value: MenuAction.members, child: Text("Members")),
+                const PopupMenuItem(
+                    value: MenuAction.aboutUs, child: Text("Join Us")),
                 const PopupMenuItem(
                     value: MenuAction.aboutUs, child: Text("About Us")),
+                const PopupMenuItem(
+                    value: MenuAction.logout, child: Text("Logout")),
                 // const PopupMenuItem(
                 //     value: MenuAction.favorites, child: Text("Favorites")),
               ];
@@ -104,11 +125,16 @@ class _MainUIState extends State<MainUI> {
             ),
             // title of page slogan //
             BigText(
-                text: "Together We Can Make", color: AppColors.grey, size: 30),
+                text: "Together We Can Make",
+                color: AppColors.secondaryBlack,
+                size: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                BigText(text: "the Society", color: AppColors.grey, size: 30),
+                BigText(
+                    text: "the Society",
+                    color: AppColors.secondaryBlack,
+                    size: 30),
                 SizedBox(width: 7),
                 BigText(
                     text: "Worth Living", color: AppColors.mainColor, size: 30),
@@ -128,6 +154,7 @@ class _MainUIState extends State<MainUI> {
             DualColorText(
               text1: wel1,
               text2: wel2,
+              color: AppColors.secondaryBlack,
             ),
             // space
             SizedBox(
@@ -138,6 +165,7 @@ class _MainUIState extends State<MainUI> {
             ParagraphText(
               width10: width10,
               text: introText,
+              color: AppColors.primaryBlack,
             ),
 
             // space
@@ -206,48 +234,64 @@ class _MainUIState extends State<MainUI> {
                   DualColorText(
                     text1: joinOur,
                     text2: team,
+                    color: AppColors.secondaryBlack,
                   ),
                   // paragraph
                   ParagraphText(
                     width10: width10,
                     text: joinOurTeamDetails,
                     size: 16,
+                    color: AppColors.secondaryBlack,
                   ),
                   // dual color title
                   DualColorText(
                     text1: "Donate Your ",
                     text2: timeAndSkills,
                     size: 25,
+                    color: AppColors.secondaryBlack,
                   ),
                   // paragraph
                   ParagraphText(
-                      width10: width10, text: timeAndSkillsDetails, size: 16),
+                    color: AppColors.secondaryBlack,
+                    width10: width10,
+                    text: timeAndSkillsDetails,
+                    size: 16,
+                  ),
                   // dual color title
                   DualColorText(
-                      text1: "Donate Your ", text2: sponsorship, size: 25),
+                    color: AppColors.secondaryBlack,
+                    text1: "Donate Your ",
+                    text2: sponsorship,
+                    size: 25,
+                  ),
                   // paragraph
                   ParagraphText(
-                      width10: width10, text: sponsorshipDetails, size: 16),
+                    color: AppColors.secondaryBlack,
+                    width10: width10,
+                    text: sponsorshipDetails,
+                    size: 16,
+                  ),
                   // join us button
                   Padding(
                     padding: EdgeInsets.only(bottom: height10 * 2),
                     child: Center(
-                      child: MaterialButton(
+                      child: OutlinedButton(
                         onPressed: () {
                           Get.to(() => JoinUs());
                         },
-                        height: height10 * 3.5,
-                        minWidth: width10 * 12,
-                        textColor: AppColors.primaryBlack,
-                        color: AppColors.grey,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(radius10 * 0.8),
-                        ),
-                        child: Text(
-                          "Join Us ->",
-                          style: TextStyle(
-                              color: AppColors.primaryBlack, fontSize: 22),
-                        ),
+                        style: OutlinedButton.styleFrom(
+                            elevation: 5,
+                            shadowColor: AppColors.primaryBlack,
+                            side: BorderSide(
+                              color: AppColors.primaryBlack,
+                              width: 3,
+                            ),
+                            backgroundColor: AppColors.grey,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10))),
+                        child: SmallText(
+                            text: "Join us ->",
+                            color: AppColors.secondaryBlack),
                       ),
                     ),
                   ),

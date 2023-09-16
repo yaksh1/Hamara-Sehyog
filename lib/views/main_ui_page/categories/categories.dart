@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
+import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/views/donation/donation.dart';
 import 'package:hamarasehyog/views/main_ui_page/texts/paragraph_text.dart';
@@ -32,7 +33,7 @@ class DonationCategory extends StatelessWidget {
       // color: AppColors.mainColor,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius10 * 3),
-        color: AppColors.primaryBlack,
+        color: AppColors.grey,
         border: Border.all(width: width10 * 0.6, color: AppColors.darkOrange),
       ),
       child: Column(
@@ -46,7 +47,7 @@ class DonationCategory extends StatelessWidget {
               children: [
                 Icon(
                   icon,
-                  color: AppColors.grey,
+                  color: AppColors.secondaryBlack,
                   size: 30,
                 ),
                 SizedBox(
@@ -54,7 +55,7 @@ class DonationCategory extends StatelessWidget {
                 ),
                 BigText(
                   text: donateCategory,
-                  color: AppColors.grey,
+                  color: AppColors.secondaryBlack,
                   size: 22,
                 )
               ],
@@ -67,26 +68,28 @@ class DonationCategory extends StatelessWidget {
             align: TextAlign.center,
             width10: width10,
             text: details,
+            color: AppColors.secondaryBlack,
+
           ),
           // space
           // button
           Padding(
             padding: EdgeInsets.symmetric(vertical: 0),
-            child: MaterialButton(
+            child: OutlinedButton(
               onPressed: () {
-                Get.to(()=>Donation());
+                Get.to(() => Donation());
               },
-              height: height10 * 4,
-              minWidth: width10 * 15,
-              textColor: AppColors.primaryBlack,
-              color: AppColors.grey,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius10 * 0.8),
-              ),
-              child: Text(
-                "Donate ->",
-                style: TextStyle(color: AppColors.primaryBlack, fontSize: 22),
-              ),
+              style: OutlinedButton.styleFrom(
+                  elevation: 5,
+                  shadowColor: AppColors.secondaryBlack,
+                  side: BorderSide(
+                    color: AppColors.primaryBlack,
+                    width: 3,
+                  ),
+                  backgroundColor: AppColors.grey,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10))),
+              child: SmallText(text: "Donate", color: AppColors.secondaryBlack),
             ),
           ),
         ],

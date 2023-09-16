@@ -12,7 +12,7 @@ import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/dimensions.dart';
 import 'package:hamarasehyog/utils/image_strings.dart';
 import 'package:hamarasehyog/utils/text_strings.dart';
-import 'package:hamarasehyog/views/contact_us.dart';
+import 'package:hamarasehyog/views/contact%20us/contact_us.dart';
 import 'package:hamarasehyog/views/log_in.dart';
 import 'package:hamarasehyog/views/main_ui_page/categories/categories.dart';
 import 'package:hamarasehyog/views/main_ui_page/main_ui_page.dart';
@@ -20,7 +20,7 @@ import 'package:hamarasehyog/views/main_ui_page/texts/paragraph_text.dart';
 import 'package:hamarasehyog/views/main_ui_page/navbar/nav_bar.dart';
 import 'package:hamarasehyog/views/main_ui_page/slide_show/slide_show.dart';
 import 'package:hamarasehyog/views/main_ui_page/texts/dual_color_text.dart';
-import 'package:hamarasehyog/views/my_donations.dart';
+import 'package:hamarasehyog/views/my%20donations/my_donations.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class NavBar extends StatefulWidget {

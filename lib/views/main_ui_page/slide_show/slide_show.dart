@@ -125,10 +125,11 @@ class _SlideShowState extends State<SlideShow> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(radius10*2),
               color: AppColors.mainColor,
+              
               boxShadow: const [
                 BoxShadow(
-                  color: AppColors.primaryBlack,
-                  blurRadius: 10.0,
+                  color: AppColors.secondaryBlack,
+                  blurRadius: 10,
                   offset: Offset(0, 5),
                 ),
                 BoxShadow(

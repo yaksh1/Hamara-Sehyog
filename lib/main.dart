@@ -4,9 +4,12 @@ import 'package:hamarasehyog/constants/routes.dart';
 import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/views/about%20us/about_us.dart';
 import 'package:hamarasehyog/views/donation/donation.dart';
+import 'package:hamarasehyog/views/gallery/gallery.dart';
 import 'package:hamarasehyog/views/log_in.dart';
 import 'package:hamarasehyog/views/main_ui_page/main_ui_page.dart';
+import 'package:hamarasehyog/views/members/members.dart';
 import 'package:hamarasehyog/views/on_boarding/on_boarding_view.dart';
+import 'package:hamarasehyog/views/projects/projects.dart';
 import 'package:hamarasehyog/views/sign_up.dart';
 import 'package:hamarasehyog/views/splash%20screen/splash_screen.dart';
 import 'package:hamarasehyog/views/verify_email_view.dart';
@@ -29,8 +32,8 @@ void main() async {
         defaultTransition: Transition.leftToRight,
         transitionDuration: const Duration(milliseconds: 500),
         // home: isViewed!=0? OnBoardingView() : const HomePage(),
-        home: SplashScreen(),
-        // home: const SplashScreen(),
+        // home: SplashScreen(),
+        home: const Gallery(),
         routes: {
           signupRoute: (context) => const SignUp(),
           loginRoute: (context) => const LogInView(), 
