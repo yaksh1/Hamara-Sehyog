@@ -14,6 +14,7 @@ import 'package:hamarasehyog/utils/dimensions.dart';
 import 'package:hamarasehyog/utils/image_strings.dart';
 import 'package:hamarasehyog/utils/text_strings.dart';
 import 'package:hamarasehyog/views/about%20us/about_us.dart';
+import 'package:hamarasehyog/views/contact%20us/contact_us.dart';
 import 'package:hamarasehyog/views/donation/donation.dart';
 import 'package:hamarasehyog/views/gallery/gallery.dart';
 import 'package:hamarasehyog/views/join%20us/join_us.dart';
@@ -90,13 +91,17 @@ class _MainUIState extends State<MainUI> {
                   Get.to(() => Projects());
                 case MenuAction.joinUs:
                   Get.to(() => JoinUs());
-
                 case MenuAction.gallery:
                   Get.to(() => Gallery());
+                case MenuAction.contactUs:
+                  Get.to(() => ContactUs());
+
+                
               }
             },
             itemBuilder: (context) {
               return [
+                
                 const PopupMenuItem(
                     value: MenuAction.projects, child: Text("Our Projects")),
                 const PopupMenuItem(
@@ -104,9 +109,11 @@ class _MainUIState extends State<MainUI> {
                 const PopupMenuItem(
                     value: MenuAction.members, child: Text("Members")),
                 const PopupMenuItem(
-                    value: MenuAction.aboutUs, child: Text("Join Us")),
+                    value: MenuAction.joinUs, child: Text("Join Us")),
                 const PopupMenuItem(
                     value: MenuAction.aboutUs, child: Text("About Us")),
+                const PopupMenuItem(
+                    value: MenuAction.contactUs, child: Text("Contact Us")),
                 const PopupMenuItem(
                     value: MenuAction.logout, child: Text("Logout")),
                 // const PopupMenuItem(

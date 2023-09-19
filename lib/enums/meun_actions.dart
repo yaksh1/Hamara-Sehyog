@@ -4,5 +4,6 @@ enum MenuAction {
   members,
   projects,
   joinUs,
+  contactUs,
   logout,
 }

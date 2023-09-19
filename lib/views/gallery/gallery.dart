@@ -5,6 +5,7 @@ import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/dimensions.dart';
 import 'package:hamarasehyog/views/gallery/food_distribution.dart';
+import 'package:hamarasehyog/views/gallery/presentation.dart';
 import 'package:hamarasehyog/views/gallery/tree_plantation.dart';
 import 'package:hamarasehyog/views/gallery/tree_plantation_2.dart';
 import 'package:hamarasehyog/views/join%20us/join_us.dart';
@@ -61,6 +62,14 @@ class _GalleryState extends State<Gallery> {
               text: "Food Distribution 5th Feb 2023",
               onPressed: () {
                 Get.to(() => FoodDistribution1());
+              },
+            ),
+            GalleryImages(
+              height10: height10,
+              width10: width10,
+              text: "Presentation 6th December 2022",
+              onPressed: () {
+                Get.to(() => Presentation());
               },
             ),
             GalleryImages(

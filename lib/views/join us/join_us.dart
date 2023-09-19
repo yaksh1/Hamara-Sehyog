@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/text_form.dart';
@@ -20,7 +22,14 @@ class _JoinUsState extends State<JoinUs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title:BigText(
+                text: "Join Us",
+                color: AppColors.mainColor,
+                size: 40,
+              ),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Padding(
@@ -28,12 +37,7 @@ class _JoinUsState extends State<JoinUs> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                  child: BigText(
-                text: "Join Us",
-                color: AppColors.mainColor,
-                size: 50,
-              )),
+              
               SizedBox(
                 height: height10 * 4,
               ),
@@ -51,7 +55,7 @@ class _JoinUsState extends State<JoinUs> {
                     ),
                     TextForm(
                       label: Text("Name"),
-                      hintText: "Name",
+                      hintText: "Full Name",
                       icon: Icons.person,
                     ),
                     SizedBox(
@@ -61,6 +65,14 @@ class _JoinUsState extends State<JoinUs> {
                       label: Text("Phone"),
                       hintText: "Phone",
                       icon: PhosphorIcons.regular.phone,
+                    ),
+                    SizedBox(
+                      height: height10 * 2,
+                    ),
+                    TextForm(
+                      label: Text("Message"),
+                      hintText: "Why would you like to join us?",
+                      icon: PhosphorIcons.regular.handshake,
                     ),
                     SizedBox(
                       height: height10 * 2,
@@ -77,7 +89,7 @@ class _JoinUsState extends State<JoinUs> {
                             borderRadius: BorderRadius.circular(8.0)),
                         height: 60,
                         child: const Text(
-                          "Next",
+                          "Submit",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
