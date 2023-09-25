@@ -73,7 +73,7 @@ class ForgotPasswordMailOption extends StatelessWidget {
                         width: double.infinity,
                         child: MaterialButton(
                           onPressed: () {
-                            Get.to(() => ForgotPasswordOtp());
+                            // Get.to(() => ForgotPasswordOtp(id));
                           },
                           textColor: AppColors.grey,
                           color: AppColors.primaryBlack,

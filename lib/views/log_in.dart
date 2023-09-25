@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/error_dialog.dart';
+import 'package:hamarasehyog/components/my_snackbar.dart';
 import 'package:hamarasehyog/components/small_grey_text.dart';
 import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/components/square_tile.dart';
@@ -24,6 +26,7 @@ class LogInView extends StatefulWidget {
 }
 
 class _LogInViewState extends State<LogInView> {
+  final mySnackbar = MySnackBar();
   // TextEditingController? _phone;
   // TextEditingController? _name;
   TextEditingController? _email;
@@ -95,7 +98,8 @@ class _LogInViewState extends State<LogInView> {
                     children: [
                       TextButton(
                           onPressed: () {
-                            ForgotPasswordScreen.ForgotPasswordBottomSheet(context);
+                            ForgotPasswordScreen.ForgotPasswordBottomSheet(
+                                context);
                           },
                           child: SmallGreyText(text: "Forgot Password?"))
                     ],
@@ -194,12 +198,15 @@ class _LogInViewState extends State<LogInView> {
                 // ---- log in options ---- //
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 15.0),
-                      child: SquareTile(
-                        imagePath: 'assets/images/google.png',
-                        height: 40,
+                      child: GestureDetector(
+                        onTap: _googleLogIn,
+                        child: SquareTile(
+                          imagePath: 'assets/images/google.png',
+                          height: 40,
+                        ),
                       ),
                     ),
                     Padding(
@@ -236,7 +243,18 @@ class _LogInViewState extends State<LogInView> {
     );
   }
 
-  
+  void _googleLogIn() async {
+    User? user;
+    user = await AuthService.firebase().signInWithGoogle();
+    if (user != null) {
+      mySnackbar.mySnackBar(
+          header: "Hello!",
+          content: "Logged in as ${user.email}",
+          bgColor: Colors.green.shade100,
+          borderColor: Colors.green);
+      Logger().d("Google signed in as " + user.displayName!);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(mainUIRoute, (route) => false);
+    }
+  }
 }
-
-

@@ -1,17 +1,23 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/components/square_tile.dart';
+import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/image_strings.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
-class ForgotPasswordOtp extends StatelessWidget {
-  const ForgotPasswordOtp({super.key});
+import 'package:pinput/pinput.dart';
 
+class ForgotPasswordOtp extends StatelessWidget {
+  final String id;
+  ForgotPasswordOtp({super.key, required this.id});
+  TextEditingController otpcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,7 +46,9 @@ class ForgotPasswordOtp extends StatelessWidget {
                   weight: FontWeight.w800,
                   size: 34,
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 SmallText(
                   text: "Enter the OTP code sent at yakshgandhi1@gmail.com ",
                   size: 18,
@@ -49,15 +57,44 @@ class ForgotPasswordOtp extends StatelessWidget {
                 SizedBox(
                   height: 30,
                 ),
-                OtpTextField(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  numberOfFields:6,
-                  filled:true,
-                  fillColor: Colors.black.withOpacity(0.1),
-                  cursorColor: AppColors.primaryBlack,
-                  focusedBorderColor: AppColors.mainColor,
+                Pinput(
+                  controller: otpcontroller,
+                  length: 6,
+                  onCompleted: (value) async {
+                    log(value);
+                    await AuthService.firebase().verifyCode(id, value);
+
+                    final user = AuthService.firebase().currentUser;
+                    if (user!=null) 
+                    log("done");
+                  },
                 ),
-                SizedBox(height: 30,),
+                // OTPTextField(
+                //   length: 6,
+                //   width: MediaQuery.of(context).size.width,
+                //   fieldWidth: 80,
+                //   style: TextStyle(fontSize: 17),
+                //   textFieldAlignment: MainAxisAlignment.spaceAround,
+                //   fieldStyle: FieldStyle.underline,
+                //   onCompleted: (pin) {
+                //     log("Completed: " + pin);
+                //   },
+                // ),
+                // OtpTextField(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   numberOfFields: 6,
+                //   filled: true,
+                //   fillColor: Colors.black.withOpacity(0.1),
+                //   cursorColor: AppColors.primaryBlack,
+                //   focusedBorderColor: AppColors.mainColor,
+                //   onSubmit: (String otp) {
+                //     log(otp);
+                //     AuthService.firebase().verifyCode(id, otp);
+                //   },
+                // ),
+                SizedBox(
+                  height: 30,
+                ),
                 SizedBox(
                   width: double.infinity,
                   child: MaterialButton(

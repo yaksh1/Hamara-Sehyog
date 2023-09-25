@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hamarasehyog/services/auth/auth_provider.dart';
 import 'package:hamarasehyog/services/auth/auth_user.dart';
 import 'package:hamarasehyog/services/auth/firebase_auth_provider.dart';
@@ -29,4 +30,13 @@ class AuthService implements AuthProvider {
 
   @override
   Future<void> initialize() => provider.initialize();
+
+  @override
+  Future<AuthUser?> verifyCode(String id, String otp) => provider.verifyCode(id,otp);
+
+  @override
+  Future<String> verifyNumber(String phonenumber) => provider.verifyNumber(phonenumber);
+
+  @override
+  Future<User?> signInWithGoogle() => provider.signInWithGoogle();
 }

@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamarasehyog/constants/routes.dart';
+import 'package:hamarasehyog/firebase_options.dart';
 import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/views/about%20us/about_us.dart';
 import 'package:hamarasehyog/views/donation/donation.dart';
@@ -18,7 +20,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 int? isViewed;
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+    WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   SharedPreferences prefs = await SharedPreferences.getInstance();
   isViewed = prefs.getInt('onBoard');
   runApp(
