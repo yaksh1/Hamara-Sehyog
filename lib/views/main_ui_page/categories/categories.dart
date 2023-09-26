@@ -58,7 +58,7 @@ class DonationCategory extends StatelessWidget {
                 BigText(
                   text: donateCategory,
                   color: AppColors.secondaryBlack,
-                  size: 22,
+                  size: width10*1.9,
                 )
               ],
             ),
@@ -71,6 +71,7 @@ class DonationCategory extends StatelessWidget {
             width10: width10,
             text: details,
             color: AppColors.secondaryBlack,
+            size: width10*1.4,
 
           ),
           // space

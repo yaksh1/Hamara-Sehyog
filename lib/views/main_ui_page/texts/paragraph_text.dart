@@ -10,7 +10,7 @@ class ParagraphText extends StatelessWidget {
     required this.width10,
     required this.text,
     this.align = TextAlign.justify,
-    this.size = 13, this.color = AppColors.grey,
+    this.size = 16, this.color = AppColors.grey,
   });
 
   final double width10;

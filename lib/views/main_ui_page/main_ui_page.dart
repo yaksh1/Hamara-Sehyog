@@ -8,6 +8,8 @@ import 'package:hamarasehyog/components/responsive_text.dart';
 import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/enums/drawer_sections.dart';
 import 'package:hamarasehyog/enums/meun_actions.dart';
+import 'package:hamarasehyog/helper/focus.dart';
+import 'package:hamarasehyog/models/focus_area_model.dart';
 import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/dimensions.dart';
@@ -16,6 +18,7 @@ import 'package:hamarasehyog/utils/text_strings.dart';
 import 'package:hamarasehyog/views/about%20us/about_us.dart';
 import 'package:hamarasehyog/views/contact%20us/contact_us.dart';
 import 'package:hamarasehyog/views/donation/donation.dart';
+import 'package:hamarasehyog/views/donation/option.dart';
 import 'package:hamarasehyog/views/gallery/gallery.dart';
 import 'package:hamarasehyog/views/join%20us/join_us.dart';
 import 'package:hamarasehyog/views/log_in.dart';
@@ -40,6 +43,15 @@ class _MainUIState extends State<MainUI> {
   double height10 = Dimensions.height10;
   double radius10 = Dimensions.radius10;
   var currentPage = DrawerSections.home;
+  List<FocusAreaModel> list = List<FocusAreaModel>.empty();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    list = getAreas();
+  }
+  
   @override
   Widget build(BuildContext context) {
     // print("current width is " + MediaQuery.of(context).size.width.toString());
@@ -60,7 +72,7 @@ class _MainUIState extends State<MainUI> {
             padding: const EdgeInsets.only(right: 8.0),
             child: OutlinedButton(
               onPressed: () {
-                Get.to(() => Donation());
+                Get.to(() => Options());
               },
               style: OutlinedButton.styleFrom(
                   side: BorderSide(
@@ -95,13 +107,10 @@ class _MainUIState extends State<MainUI> {
                   Get.to(() => Gallery());
                 case MenuAction.contactUs:
                   Get.to(() => ContactUs());
-
-                
               }
             },
             itemBuilder: (context) {
               return [
-                
                 const PopupMenuItem(
                     value: MenuAction.projects, child: Text("Our Projects")),
                 const PopupMenuItem(
@@ -125,190 +134,403 @@ class _MainUIState extends State<MainUI> {
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            SizedBox(
-              height: height10,
-            ),
-            // title of page slogan //
-            BigText(
-                text: "Together We Can Make",
-                color: AppColors.secondaryBlack,
-                size: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                BigText(
-                    text: "the Society",
-                    color: AppColors.secondaryBlack,
-                    size: 30),
-                SizedBox(width: 7),
-                BigText(
-                    text: "Worth Living", color: AppColors.mainColor, size: 30),
-              ],
-            ),
-            // space
-            SizedBox(
-              height: height10 * 2,
-            ),
-            // slide show of events
-            SlideShow(),
-            // space
-            SizedBox(
-              height: height10,
-            ),
-            // welcome
-            DualColorText(
-              text1: wel1,
-              text2: wel2,
-              color: AppColors.secondaryBlack,
-            ),
-            // space
-            SizedBox(
-              height: height10,
-            ),
-
-            // intro text description
-            ParagraphText(
-              width10: width10,
-              text: introText,
-              color: AppColors.primaryBlack,
-            ),
-
-            // space
-            SizedBox(
-              height: height10 * 4,
-            ),
-
-            // donation categories
-            Wrap(
-              runSpacing: height10 * 3,
-              children: [
-                DonationCategory(
-                  height10: height10,
-                  width10: width10,
-                  radius10: radius10,
-                  icon: PhosphorIcons.duotone.pencil,
-                  donateCategory: ghyanDhyan,
-                  details: ghyanDhyanDetails,
-                ),
-                DonationCategory(
-                  height10: height10,
-                  width10: width10,
-                  radius10: radius10,
-                  icon: PhosphorIcons.fill.bowlFood,
-                  donateCategory: hunger,
-                  details: hungerDetails,
-                ),
-                DonationCategory(
-                  height10: height10,
-                  width10: width10,
-                  radius10: radius10,
-                  icon: PhosphorIcons.duotone.heart,
-                  donateCategory: healthcare,
-                  details: healthCareDetails,
-                ),
-                DonationCategory(
-                  height10: height10,
-                  width10: width10,
-                  radius10: radius10,
-                  icon: PhosphorIcons.duotone.tree,
-                  donateCategory: treePlantation,
-                  details: treePlatationDetails,
-                ),
-                DonationCategory(
-                  height10: height10,
-                  width10: width10,
-                  radius10: radius10,
-                  icon: PhosphorIcons.duotone.money,
-                  donateCategory: money,
-                  details: moneyDetails,
-                ),
-              ],
-            ),
-
-            // space
-            SizedBox(
-              height: height10 * 4,
-            ),
-            // join our team container
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Wrap(
-                runSpacing: 20,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: width10),
+          child: Column(
+            children: [
+              SizedBox(
+                height: height10,
+              ),
+              // title of page slogan //
+              BigText(
+                  text: "Together We Can Make",
+                  color: AppColors.secondaryBlack,
+                  size: width10 * 2.5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // dual color title
-                  DualColorText(
-                    text1: joinOur,
-                    text2: team,
-                    color: AppColors.secondaryBlack,
-                  ),
-                  // paragraph
-                  ParagraphText(
-                    width10: width10,
-                    text: joinOurTeamDetails,
-                    size: 16,
-                    color: AppColors.secondaryBlack,
-                  ),
-                  // dual color title
-                  DualColorText(
-                    text1: "Donate Your ",
-                    text2: timeAndSkills,
-                    size: 25,
-                    color: AppColors.secondaryBlack,
-                  ),
-                  // paragraph
-                  ParagraphText(
-                    color: AppColors.secondaryBlack,
-                    width10: width10,
-                    text: timeAndSkillsDetails,
-                    size: 16,
-                  ),
-                  // dual color title
-                  DualColorText(
-                    color: AppColors.secondaryBlack,
-                    text1: "Donate Your ",
-                    text2: sponsorship,
-                    size: 25,
-                  ),
-                  // paragraph
-                  ParagraphText(
-                    color: AppColors.secondaryBlack,
-                    width10: width10,
-                    text: sponsorshipDetails,
-                    size: 16,
-                  ),
-                  // join us button
-                  Padding(
-                    padding: EdgeInsets.only(bottom: height10 * 2),
-                    child: Center(
-                      child: OutlinedButton(
-                        onPressed: () {
-                          Get.to(() => JoinUs());
-                        },
-                        style: OutlinedButton.styleFrom(
-                            elevation: 5,
-                            shadowColor: AppColors.primaryBlack,
-                            side: BorderSide(
-                              color: AppColors.primaryBlack,
-                              width: 3,
-                            ),
-                            backgroundColor: AppColors.grey,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10))),
-                        child: SmallText(
-                            text: "Join us ->",
-                            color: AppColors.secondaryBlack),
-                      ),
-                    ),
-                  ),
-                  // SizedBox(height: 20,)
+                  BigText(
+                      text: "the Society",
+                      color: AppColors.secondaryBlack,
+                      size: width10 * 2.5),
+                  SizedBox(width: 7),
+                  BigText(
+                      text: "Worth Living",
+                      color: AppColors.mainColor,
+                      size: 30),
                 ],
               ),
-            )
-          ],
+              // space
+              SizedBox(
+                height: height10 * 2,
+              ),
+              //! slide show of events
+              SlideShow(),
+              // space
+              SizedBox(
+                height: height10,
+              ),
+
+              //! welcome
+              _welcome(height10: height10, width10: width10),
+
+              // space
+              SizedBox(
+                height: height10 * 2,
+              ),
+
+              //! <---- vision mission ... -----> //
+              _About(height10: height10, width10: width10),
+
+              SizedBox(
+                height: height10 * 2,
+              ),
+              //! <---- focus areas -----> //
+              BigText(text: "Our Focus Areas", color: Colors.grey[900]),
+              SizedBox(
+                height: height10 * 2,
+              ),
+              Container(
+                height: height10*50,
+                
+                child: ListView.builder(
+                  itemCount: 5,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  // physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return _buildFocusAreas(desc:list[index].desc,imageUrl: list[index].image,title:list[index].title);
+                  },
+                ),
+              ),
+              // space
+              SizedBox(
+                height: height10 * 4,
+              ),
+
+              //! join our team container
+              _joinUs(width10: width10, height10: height10)
+            ],
+          ),
         ),
       ),
+    );
+  }
+}
+
+class _buildFocusAreas extends StatelessWidget {
+  _buildFocusAreas({super.key,
+      required this.imageUrl,
+      required this.title,
+      required this.desc,
+      });
+
+final String? imageUrl, title, desc;
+  double width10 = Dimensions.width10;
+  double height10 = Dimensions.height10;
+  double radius10 = Dimensions.radius10;
+  @override
+  Widget build(BuildContext context) {
+     return Padding(
+       padding: const EdgeInsets.symmetric(horizontal: 10),
+       child: Container(
+            width: width10*35,
+
+            padding: EdgeInsets.symmetric(horizontal:width10*1.7,vertical: height10*1.7),
+            margin: EdgeInsets.only(bottom: 10),
+            decoration: BoxDecoration(
+                border: Border.all(), borderRadius: BorderRadius.circular(20)),
+            // padding: EdgeInsets.only(bottom: 20.h),
+            child: Wrap(
+              runSpacing: 5,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(imageUrl!, fit: BoxFit.cover,width: width10*35,height: height10*20,),
+                ),
+                BigText(text: title!, color: Colors.black,size: 30,),
+                ParagraphText(width10: width10, text: desc!,color: Colors.grey.shade600,)
+              ],
+            ),
+         ),
+     );
+  }
+}
+
+class _welcome extends StatelessWidget {
+  const _welcome({
+    super.key,
+    required this.height10,
+    required this.width10,
+  });
+
+  final double height10;
+  final double width10;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        DualColorText(
+          text1: wel1,
+          text2: wel2,
+          color: AppColors.secondaryBlack,
+        ),
+        // space
+        SizedBox(
+          height: height10,
+        ),
+
+        // intro text description
+        ParagraphText(
+          width10: width10,
+          text: introText,
+          color: AppColors.primaryBlack,
+        ),
+      ],
+    );
+  }
+}
+
+class _joinUs extends StatelessWidget {
+  const _joinUs({
+    super.key,
+    required this.width10,
+    required this.height10,
+  });
+
+  final double width10;
+  final double height10;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Wrap(
+        runSpacing: 20,
+        children: [
+          // dual color title
+          DualColorText(
+            text1: joinOur,
+            text2: team,
+            color: AppColors.secondaryBlack,
+          ),
+          // paragraph
+          ParagraphText(
+            width10: width10,
+            text: joinOurTeamDetails,
+            size: 16,
+            color: AppColors.secondaryBlack,
+          ),
+          // dual color title
+          DualColorText(
+            text1: "Donate Your ",
+            text2: timeAndSkills,
+            size: 25,
+            color: AppColors.secondaryBlack,
+          ),
+          // paragraph
+          ParagraphText(
+            color: AppColors.secondaryBlack,
+            width10: width10,
+            text: timeAndSkillsDetails,
+            size: 16,
+          ),
+          // dual color title
+          DualColorText(
+            color: AppColors.secondaryBlack,
+            text1: "Donate Your ",
+            text2: sponsorship,
+            size: 25,
+          ),
+          // paragraph
+          ParagraphText(
+            color: AppColors.secondaryBlack,
+            width10: width10,
+            text: sponsorshipDetails,
+            size: 16,
+          ),
+          // join us button
+          Padding(
+            padding: EdgeInsets.only(bottom: height10 * 2),
+            child: Center(
+              child: OutlinedButton(
+                onPressed: () {
+                  Get.to(() => JoinUs());
+                },
+                style: OutlinedButton.styleFrom(
+                    elevation: 5,
+                    shadowColor: AppColors.primaryBlack,
+                    side: BorderSide(
+                      color: AppColors.primaryBlack,
+                      width: 3,
+                    ),
+                    backgroundColor: AppColors.grey,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                child: SmallText(
+                    text: "Join us ->", color: AppColors.secondaryBlack),
+              ),
+            ),
+          ),
+          // SizedBox(height: 20,)
+        ],
+      ),
+    );
+  }
+}
+
+
+class _About extends StatelessWidget {
+  const _About({
+    super.key,
+    required this.height10,
+    required this.width10,
+  });
+
+  final double height10;
+  final double width10;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          // padding: EdgeInsets.all(height10),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.transparent, width: 2),
+          ),
+          child: Column(
+            children: [
+              DualColorText(
+                size: 35,
+                text1: "Our ",
+                text2: "Vision",
+                color: AppColors.primaryBlack,
+              ),
+              // space
+              SizedBox(
+                height: height10,
+              ),
+
+              // intro text description
+              ParagraphText(
+                  width10: width10,
+                  text: ourVisionText,
+                  color: AppColors.primaryBlack),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: height10 * 2,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.transparent, width: 2),
+          ),
+          child: Column(
+            children: [
+              DualColorText(
+                size: 35,
+                text1: "Our ",
+                text2: "Mission",
+                color: AppColors.primaryBlack,
+              ),
+              // space
+              SizedBox(
+                height: height10,
+              ),
+
+              // intro text description
+              ParagraphText(
+                  width10: width10,
+                  text: ourMissionText,
+                  color: AppColors.primaryBlack),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: height10 * 2,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.transparent, width: 2),
+          ),
+          child: Column(
+            children: [
+              DualColorText(
+                size: 35,
+                text1: "Our ",
+                text2: "Goals",
+                color: AppColors.primaryBlack,
+              ),
+              // space
+              SizedBox(
+                height: height10,
+              ),
+
+              // intro text description
+              ParagraphText(
+                  width10: width10,
+                  text: ourGoalsText,
+                  color: AppColors.primaryBlack),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: height10 * 2,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.transparent, width: 2),
+          ),
+          child: Column(
+            children: [
+              DualColorText(
+                size: 35,
+                text1: "Our ",
+                text2: "Objectives",
+                color: AppColors.primaryBlack,
+              ),
+              // space
+              SizedBox(
+                height: height10,
+              ),
+
+              // intro text description
+              ParagraphText(
+                width10: width10,
+                text: objectives1,
+                color: AppColors.primaryBlack,
+              ),
+              SizedBox(
+                height: height10 * 1.5,
+              ),
+              ParagraphText(
+                width10: width10,
+                text: objectives2,
+                color: AppColors.primaryBlack,
+              ),
+              SizedBox(
+                height: height10 * 1.5,
+              ),
+              ParagraphText(
+                width10: width10,
+                text: objectives3,
+                color: AppColors.primaryBlack,
+              ),
+              SizedBox(
+                height: height10 * 1.5,
+              ),
+              ParagraphText(
+                width10: width10,
+                text: objectives4,
+                color: AppColors.primaryBlack,
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
