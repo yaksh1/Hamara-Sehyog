@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -20,11 +21,14 @@ class FirebaseAuthProvider implements AuthProvider {
   Future<AuthUser> createUser({
     required String email,
     required String password,
+    required String name
   }) async {
     // implement createUser
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      //! save user to database
+      await saveUSerEmailPass(email, name);
       final user = currentUser;
       if (user != null) {
         return user;
@@ -184,10 +188,13 @@ class FirebaseAuthProvider implements AuthProvider {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
+
     try {
       // Once signed in, return the UserCredential
       final UserCredential userCredential =
           await auth.signInWithCredential(credential);
+      //! save user in data collection
+      await saveUser(googleUser);
       userForGoogle = userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
@@ -214,5 +221,22 @@ class FirebaseAuthProvider implements AuthProvider {
       ));
     }
     return userForGoogle;
+  }
+
+    saveUser(GoogleSignInAccount? googleUser) {
+    FirebaseFirestore.instance.collection("users").doc(googleUser!.email).set({
+      "email": googleUser.email,
+      "name": googleUser.displayName,
+      "profilePic": googleUser.photoUrl
+    });
+
+    Logger().d("Saved user data");
+  }
+
+  saveUSerEmailPass(String email, String username) {
+    FirebaseFirestore.instance.collection("users").doc(email).set({
+      'email': email,
+      'name': username,
+    });
   }
 }

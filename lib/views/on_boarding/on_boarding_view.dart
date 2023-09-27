@@ -39,7 +39,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           model: OnBoardingModel(
         image: missionIllustration,
         title: "Our Mission",
-        subTitle: ourMissionText,
+        subTitle: ourMissionText1,
         bgColor: AppColors.onBoardingPage1Color,
       )),
       OnBoardingPage(

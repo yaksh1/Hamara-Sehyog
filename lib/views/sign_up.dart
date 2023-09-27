@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, use_build_context_synchronously, prefer_const_literals_to_create_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/error_dialog.dart';
@@ -18,28 +19,29 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  TextEditingController? _phone;
-  TextEditingController? _name;
-  TextEditingController? _email;
-  TextEditingController? _password;
+  // TextEditingController? _phone;
+  TextEditingController _name = TextEditingController();
+  TextEditingController _email= TextEditingController();
+  TextEditingController _password=TextEditingController();
+  
+  get mySnackbar => null;
 
   @override
   void initState() {
     _email = TextEditingController();
     _password = TextEditingController();
     _name = TextEditingController();
-    _phone = TextEditingController();
+    // _phone = TextEditingController();
     super.initState();
   }
 
-  // @override
-  // void dispose() {
-  //   _email?.dispose();
-  //   _password?.dispose();
-  //   _name?.dispose();
-  //   _phone?.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    _name.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,11 +105,12 @@ class _SignUpState extends State<SignUp> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: MaterialButton(
                     onPressed: () async {
-                      final email = _email!.text;
-                      final password = _password!.text;
+                      final email = _email.text;
+                      final password = _password.text;
+                      final name = _name.text;
                       try {
                         await AuthService.firebase()
-                            .createUser(email: email, password: password);
+                            .createUser(email: email, password: password,name: name);
 
                         // ---- when clicked on sign up button ---- //
                         AuthService.firebase().sendEmailVerification();
@@ -185,9 +188,13 @@ class _SignUpState extends State<SignUp> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: SquareTile(
-                        imagePath: 'assets/images/google.png',
-                        height: 40,
+                      child: GestureDetector(
+                        onTap: _googleLogIn,
+                        child: SquareTile(
+                          
+                          imagePath: 'assets/images/google.png',
+                          height: 40,
+                        ),
                       ),
                     ),
                     Padding(
@@ -222,5 +229,18 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+    void _googleLogIn() async {
+    User? user;
+    user = await AuthService.firebase().signInWithGoogle();
+    if (user != null) {
+      mySnackbar.mySnackBar(
+          header: "Hello!",
+          content: "Logged in as ${user.email}",
+          bgColor: Colors.green.shade100,
+          borderColor: Colors.green);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(mainUIRoute, (route) => false);
+    }
   }
 }

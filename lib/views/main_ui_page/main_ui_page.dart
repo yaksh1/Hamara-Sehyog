@@ -61,7 +61,7 @@ class _MainUIState extends State<MainUI> {
 
       // header
       appBar: AppBar(
-        title: Image.asset(appLogo2),
+        title: Image.asset("assets/images/logo_no_bg.png",height: 60,),
         automaticallyImplyLeading: false,
         // centerTitle: true,
         // automaticallyImplyLeading: false,
@@ -234,7 +234,7 @@ final String? imageUrl, title, desc;
      return Padding(
        padding: const EdgeInsets.symmetric(horizontal: 10),
        child: Container(
-            width: width10*35,
+            width: width10*30,
 
             padding: EdgeInsets.symmetric(horizontal:width10*1.7,vertical: height10*1.7),
             margin: EdgeInsets.only(bottom: 10),
@@ -249,7 +249,7 @@ final String? imageUrl, title, desc;
                   child: Image.asset(imageUrl!, fit: BoxFit.cover,width: width10*35,height: height10*20,),
                 ),
                 BigText(text: title!, color: Colors.black,size: 30,),
-                ParagraphText(width10: width10, text: desc!,color: Colors.grey.shade600,)
+                ParagraphText(width10: width10, text: desc!,color: Colors.grey.shade600,size: 15,)
               ],
             ),
          ),
@@ -444,7 +444,16 @@ class _About extends StatelessWidget {
               // intro text description
               ParagraphText(
                   width10: width10,
-                  text: ourMissionText,
+                  text: ourMissionText1,
+                  color: AppColors.primaryBlack),
+                  SizedBox(
+                height: height10,
+              ),
+
+              // intro text description
+              ParagraphText(
+                  width10: width10,
+                  text: ourMissionText2,
                   color: AppColors.primaryBlack),
             ],
           ),

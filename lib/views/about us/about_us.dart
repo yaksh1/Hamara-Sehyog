@@ -117,7 +117,7 @@ class _AboutUsState extends State<AboutUs> {
                       // intro text description
                       ParagraphText(
                           width10: width10,
-                          text: ourMissionText,
+                          text: ourMissionText1,
                           color: AppColors.primaryBlack),
                     ],
                   )),

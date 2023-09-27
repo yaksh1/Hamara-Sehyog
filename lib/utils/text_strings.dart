@@ -35,15 +35,20 @@ const moneyDetails =
     "Make a financial impact by donating funds that will be used  for 1.	Ration & Food 2.	Education 3.	Hygiene and health 4.	Tree Plantation 5.	Your contributions can help us reach more people and provide consistent support.Your contributions can cover tuition fees, books, enabling individuals to pursue their dreams. You can also specify where do you want this money to be spent. Donate";
 
 // about us
-const ourMissionText =
-    "Our mission is to identify the affected communities, provide them with meals, facilitate basic education for children and the underprivileged in those communitie.";
+const ourMissionText1 =
+    "Our mission is to identify the affected communities in our vicinity, provide them with meals, facilitate basic education for children and the under-privileged in those communities along with motivating and facilitating hygienic living for their betterment and that of the society as a whole. We are driven to work on the above initiatives maintaining transparency in collection and utilization of funds as well as our operations and impact..";
+
+const ourMissionText2 =
+    "Our target communities are “bastis” and shanties in urban and rural areas in the vicinity of first and second tier cities. A typical community that we work with comprises 20-30 families who support themselves as either daily wage labourers, street vendors, house helps or with other similar seasonal and unstable means of livelihood.";
+
 const ourVisionText =
     "Our vision is to create social wellness among society and make the underprivileged population affected mostly by the pandemic become self-reliant on a sustainable basis and enable them to live a life with dignity.";
 const flexibilityText =
     "Donate using multiple ways like Ration,hygiene,products,saplings,books,education sponsorship and even monthly contribution";
 const ourGoalsText =
     "Our overarching goal is also to improve the living situation of the most vulnerable population, especially the ones falling below poverty line and are worst affected by the ongoing pandemic or other natural calamities, by helping them find new opportunities or develop new skills to become economically self-reliant.";
-const objectives1 = "●	To support the identified individuals and families affected by lockdowns with meals and other essentials for the next 3 to 6 months, until the regular means of livelihood is restored";
+const objectives1 =
+    "●	To support the identified individuals and families affected by lockdowns with meals and other essentials for the next 3 to 6 months, until the regular means of livelihood is restored";
 const objectives2 =
     "●	To support affected underprivileged children with home/ remote schooling and arranging for financial sustainable solution to enroll/ continue their education - for the next 1 year";
 const objectives3 =
