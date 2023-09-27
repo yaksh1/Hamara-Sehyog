@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
+import 'package:hamarasehyog/components/error_dialog.dart';
 import 'package:hamarasehyog/components/text_form.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/dimensions.dart';
@@ -23,11 +25,11 @@ class _JoinUsState extends State<JoinUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:BigText(
-                text: "Join Us",
-                color: AppColors.mainColor,
-                size: 40,
-              ),
+        title: BigText(
+          text: "Join Us",
+          color: AppColors.mainColor,
+          size: 40,
+        ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -37,11 +39,9 @@ class _JoinUsState extends State<JoinUs> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
               SizedBox(
                 height: height10 * 4,
               ),
-
               Form(
                 child: Column(
                   children: [
@@ -81,7 +81,8 @@ class _JoinUsState extends State<JoinUs> {
                       width: double.infinity,
                       child: MaterialButton(
                         onPressed: () {
-                          // Get.to(() => ForgotPasswordOtp());
+                          showErrorDialog(
+                              context, "Our team will contact you soon.",title: "Thanks for submitting!");
                         },
                         textColor: AppColors.grey,
                         color: AppColors.primaryBlack,
@@ -91,8 +92,7 @@ class _JoinUsState extends State<JoinUs> {
                         child: const Text(
                           "Submit",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
+                              fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                       ),
                     ),

@@ -1,6 +1,9 @@
 // ignore_for_file: sized_box_for_whitespace, prefer_const_constructors
 
+import 'dart:developer';
+
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hamarasehyog/helper/event.dart';
 import 'package:hamarasehyog/helper/image.dart';
@@ -8,6 +11,7 @@ import 'package:hamarasehyog/models/slide_show_event.dart';
 import 'package:hamarasehyog/models/slide_show_image.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/dimensions.dart';
+import 'package:logger/logger.dart';
 
 class SlideShow extends StatefulWidget {
   const SlideShow({super.key});
@@ -30,13 +34,11 @@ class _SlideShowState extends State<SlideShow> {
 
   // get image paths list
   List<SlideShowImageModel> imagePaths = List<SlideShowImageModel>.empty();
-  List<SlideShowEvent> events = List<SlideShowEvent>.empty();
 
   @override
   void initState() {
     super.initState();
     imagePaths = getImages();
-    events = getEvents();
     pageController.addListener(() {
       setState(() {
         _currPageValue = pageController.page!;
@@ -63,7 +65,9 @@ class _SlideShowState extends State<SlideShow> {
             controller: pageController,
             itemCount: 5,
             itemBuilder: (context, position) {
-              return _buildPageItem(position, imagePaths[position].imagePath,events[position].eventName,events[position].eventDate);
+              return _buildPageItem(position, imagePaths[position].imagePath,
+                  imagePaths[position].eventName,
+                  imagePaths[position].eventDate);
             },
           ),
         ),

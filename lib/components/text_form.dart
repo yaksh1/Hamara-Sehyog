@@ -8,16 +8,19 @@ class TextForm extends StatelessWidget {
     required this.label,
     required this.hintText,
     required this.icon,
+    this.controller
   });
 
   final Widget? label;
   final String hintText;
   final IconData icon;
   double height10 = Dimensions.height10;
+  TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
         prefixIcon: Icon(icon),
         label: label,

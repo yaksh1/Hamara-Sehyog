@@ -3,18 +3,18 @@
 import 'package:flutter/material.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 
-Future<void> showErrorDialog(BuildContext context, String text) {
+Future<void> showErrorDialog(BuildContext context, String text,
+    {String title = "An Error Occurred"}) {
   return showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: const Text("An error occurred",
-        style: TextStyle(
+        title: Text(title,
+            style: TextStyle(
                 fontWeight: FontWeight.w800, color: AppColors.darkGrey)),
-        content: Text(
-          text,
-          style: TextStyle(
-                fontWeight: FontWeight.w400, color: AppColors.darkGrey)),
+        content: Text(text,
+            style: TextStyle(
+                fontWeight: FontWeight.w400, color: AppColors.darkGrey,fontSize: 18)),
         actions: [
           TextButton(
               onPressed: () {
