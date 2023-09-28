@@ -12,6 +12,7 @@ import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/image_strings.dart';
 import 'package:hamarasehyog/views/forget_password/forgot_password_phone/forgot_password-phone.dart';
+import 'package:hamarasehyog/views/forget_password/reset%20password/reset_password_page.dart';
 import 'package:hamarasehyog/views/main_ui_page/main_ui_page.dart';
 import 'package:logger/logger.dart';
 
@@ -24,10 +25,10 @@ class ForgotPasswordOtp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var code = '';
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(),
-        body: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(),
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(30),
@@ -86,7 +87,7 @@ class ForgotPasswordOtp extends StatelessWidget {
 
                         // Sign the user in (or link) with the credential
                         await auth.signInWithCredential(credential);
-                        Get.to(() => MainUI());
+                        Get.to(() => ResetPasswordView());
                       } catch (e) {
                         Logger().d(code);
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -101,7 +102,6 @@ class ForgotPasswordOtp extends StatelessWidget {
                     child: const Text(
                       "Next",
                       style: TextStyle(
-                          fontFamily: 'Poppins',
                           fontWeight: FontWeight.bold,
                           fontSize: 18),
                     ),

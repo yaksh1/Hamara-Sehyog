@@ -12,10 +12,10 @@ class ForgotPasswordMailOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(),
-        body: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(),
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(30),
             child: Column(
@@ -81,7 +81,6 @@ class ForgotPasswordMailOption extends StatelessWidget {
                           child: const Text(
                             "Next",
                             style: TextStyle(
-                                fontFamily: 'Poppins',
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18),
                           ),

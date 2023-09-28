@@ -25,10 +25,10 @@ class _ForgotPasswordPhoneOptionState extends State<ForgotPasswordPhoneOption> {
   final TextEditingController _phoneNumber = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(),
-        body: SingleChildScrollView(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(30),
@@ -111,7 +111,6 @@ class _ForgotPasswordPhoneOptionState extends State<ForgotPasswordPhoneOption> {
                           child: const Text(
                             "Next",
                             style: TextStyle(
-                                fontFamily: 'Poppins',
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18),
                           ),
