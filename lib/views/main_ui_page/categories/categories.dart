@@ -7,7 +7,6 @@ import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/views/donation/donation.dart';
 import 'package:hamarasehyog/views/main_ui_page/texts/paragraph_text.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class DonationCategory extends StatelessWidget {
   const DonationCategory({

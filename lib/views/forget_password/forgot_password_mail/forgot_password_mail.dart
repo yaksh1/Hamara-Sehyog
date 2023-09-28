@@ -1,13 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/components/square_tile.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/image_strings.dart';
-import 'package:hamarasehyog/views/forget_password/forgot_password_otp/forgot_password_otp.dart';
 
 class ForgotPasswordMailOption extends StatelessWidget {
   const ForgotPasswordMailOption({super.key});

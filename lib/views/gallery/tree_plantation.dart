@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/dimensions.dart';
 import 'package:hamarasehyog/views/gallery/images_for_galley_container.dart';
 
@@ -17,7 +16,7 @@ class TreePlantation extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             ImagesForGallery(

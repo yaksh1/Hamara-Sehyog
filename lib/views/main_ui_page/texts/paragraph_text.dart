@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hamarasehyog/components/responsive_text.dart';
 import 'package:hamarasehyog/utils/colors.dart';
-import 'package:hamarasehyog/utils/text_strings.dart';
 
 class ParagraphText extends StatelessWidget {
   const ParagraphText({

@@ -1,10 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:hamarasehyog/components/small_text.dart';
-import 'package:hamarasehyog/utils/colors.dart';
-import 'package:hamarasehyog/views/main_ui_page/main_ui_page.dart';
 // import 'package:hamarasehyog/views/main_ui_page/navbar/meunitem.dart';
 
 class MyDrawerList extends StatelessWidget {

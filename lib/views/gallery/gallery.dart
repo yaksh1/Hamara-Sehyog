@@ -26,7 +26,7 @@ class _GalleryState extends State<Gallery> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: BigText(
+        title: const BigText(
           text: "Gallery",
           color: AppColors.mainColor,
           size: 30,
@@ -34,7 +34,7 @@ class _GalleryState extends State<Gallery> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             SizedBox(
@@ -45,7 +45,7 @@ class _GalleryState extends State<Gallery> {
               width10: width10,
               text: "Tree plantation 3rd August 2023",
               onPressed: () {
-                Get.to(() => TreePlantation2());
+                Get.to(() => const TreePlantation2());
               },
             ),
             GalleryImages(
@@ -53,7 +53,7 @@ class _GalleryState extends State<Gallery> {
               width10: width10,
               text: "Tree plantation Drive during monsoon 30th July 2023",
               onPressed: () {
-                Get.to(() => TreePlantation());
+                Get.to(() => const TreePlantation());
               },
             ),
             GalleryImages(
@@ -61,7 +61,7 @@ class _GalleryState extends State<Gallery> {
               width10: width10,
               text: "Food Distribution 5th Feb 2023",
               onPressed: () {
-                Get.to(() => FoodDistribution1());
+                Get.to(() => const FoodDistribution1());
               },
             ),
             GalleryImages(
@@ -69,7 +69,7 @@ class _GalleryState extends State<Gallery> {
               width10: width10,
               text: "Presentation 6th December 2022",
               onPressed: () {
-                Get.to(() => Presentation());
+                Get.to(() => const Presentation());
               },
             ),
             GalleryImages(
@@ -77,7 +77,7 @@ class _GalleryState extends State<Gallery> {
               width10: width10,
               text: "15th August 2022 Celebrations",
               onPressed: () {
-                Get.to(() => JoinUs());
+                Get.to(() => const JoinUs());
               },
             ),
             GalleryImages(
@@ -85,7 +85,7 @@ class _GalleryState extends State<Gallery> {
               width10: width10,
               text: "Food Packet Distribution 2nd April 2021",
               onPressed: () {
-                Get.to(() => JoinUs());
+                Get.to(() => const JoinUs());
               },
             ),
             GalleryImages(
@@ -93,7 +93,7 @@ class _GalleryState extends State<Gallery> {
                 width10: width10,
                 text: "Distribution of meals 3rd Feb 2021",
                 onPressed: () {
-                  Get.to(() => JoinUs());
+                  Get.to(() => const JoinUs());
                 }),
           ],
         ),
@@ -129,7 +129,7 @@ class GalleryImages extends StatelessWidget {
                   minimumSize: Size(double.infinity, height10 * 3),
                   elevation: 5,
                   shadowColor: AppColors.primaryBlack,
-                  side: BorderSide(
+                  side: const BorderSide(
                     color: AppColors.primaryBlack,
                     width: 3,
                   ),

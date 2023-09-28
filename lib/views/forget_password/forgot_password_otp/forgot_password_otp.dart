@@ -3,14 +3,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/components/square_tile.dart';
 import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/image_strings.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 import 'package:pinput/pinput.dart';
 
@@ -65,8 +63,9 @@ class ForgotPasswordOtp extends StatelessWidget {
                     await AuthService.firebase().verifyCode(id, value);
 
                     final user = AuthService.firebase().currentUser;
-                    if (user!=null) 
-                    log("done");
+                    if (user!=null) {
+                      log("done");
+                    }
                   },
                 ),
                 // OTPTextField(

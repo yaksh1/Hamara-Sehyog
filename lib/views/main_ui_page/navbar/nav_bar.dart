@@ -38,7 +38,7 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     // print("current width is " + MediaQuery.of(context).size.width.toString());
-    var container;
+    Widget container;
     if (currentPage == DrawerSections.home) {
       container = MainUI();
     } else if (currentPage == DrawerSections.contactUs) {
@@ -94,7 +94,6 @@ class _NavBarState extends State<NavBar> {
           )
         ],
       ),
-      body: container,
     );
   }
 

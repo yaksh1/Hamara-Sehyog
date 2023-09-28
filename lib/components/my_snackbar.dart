@@ -10,7 +10,7 @@ class MySnackBar{
       content,
       barBlur: blur,
       boxShadows: [
-        BoxShadow(
+        const BoxShadow(
             blurRadius: 10,
             color: Colors.grey,
             spreadRadius: 1,

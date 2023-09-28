@@ -1,17 +1,12 @@
 // ignore_for_file: sized_box_for_whitespace, prefer_const_constructors
 
-import 'dart:developer';
 
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hamarasehyog/helper/event.dart';
 import 'package:hamarasehyog/helper/image.dart';
-import 'package:hamarasehyog/models/slide_show_event.dart';
 import 'package:hamarasehyog/models/slide_show_image.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/dimensions.dart';
-import 'package:logger/logger.dart';
 
 class SlideShow extends StatefulWidget {
   const SlideShow({super.key});
@@ -25,9 +20,9 @@ class _SlideShowState extends State<SlideShow> {
   PageController pageController = PageController(viewportFraction: .85);
   // page value
   var _currPageValue = 0.0;
-  double _scaleFactor = 0.8;
-  double _heightContainer1 = Dimensions.slideShowContainer;
-  double _heightContainer2 = Dimensions.slideShowTextContainer;
+  final double _scaleFactor = 0.8;
+  final double _heightContainer1 = Dimensions.slideShowContainer;
+  final double _heightContainer2 = Dimensions.slideShowTextContainer;
   double width10 = Dimensions.width10;
   double height10 = Dimensions.height10;
   double radius10 = Dimensions.radius10;

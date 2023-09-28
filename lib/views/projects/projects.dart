@@ -30,7 +30,7 @@ class _ProjectsState extends State<Projects> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             // BigText(text: "Projects Undertaken", color: AppColors.mainColor,size: width10*3.5,),
@@ -46,7 +46,7 @@ class _ProjectsState extends State<Projects> {
                   ),
                   child: Column(
                     children: [
-                      DualColorText(
+                      const DualColorText(
                         text1: "",
                         text2: "3rd August, 2023",
                         color: AppColors.primaryBlack,
@@ -57,7 +57,7 @@ class _ProjectsState extends State<Projects> {
                       ),
 
                       // intro text description
-                      SmallText(
+                      const SmallText(
                         // width10: width10,
                         text: "Neem Trees plantation",
                         color: AppColors.primaryBlack,
@@ -88,7 +88,7 @@ class _ProjectsState extends State<Projects> {
                   ),
                   child: Column(
                     children: [
-                      DualColorText(
+                      const DualColorText(
                         text1: "",
                         text2: "30th July, 2023",
                         color: AppColors.primaryBlack,
@@ -99,7 +99,7 @@ class _ProjectsState extends State<Projects> {
                       ),
 
                       // intro text description
-                      SmallText(
+                      const SmallText(
                         // width10: width10,
                         text: "Tree plantation Drive during monsoon",
                         color: AppColors.primaryBlack,
@@ -131,7 +131,7 @@ class _ProjectsState extends State<Projects> {
                   ),
                   child: Column(
                     children: [
-                      DualColorText(
+                      const DualColorText(
                         text1: "",
                         text2: "5th Feb, 2023",
                         color: AppColors.primaryBlack,
@@ -142,7 +142,7 @@ class _ProjectsState extends State<Projects> {
                       ),
 
                       // intro text description
-                      SmallText(
+                      const SmallText(
                           // width10: width10,
                           text: "Food Distribution",
                           color: AppColors.primaryBlack,
@@ -177,7 +177,7 @@ class _ProjectsState extends State<Projects> {
                   ),
                   child: Column(
                     children: [
-                      DualColorText(
+                      const DualColorText(
                         text1: "",
                         text2: "15th Aug, 2022",
                         color: AppColors.primaryBlack,
@@ -186,7 +186,7 @@ class _ProjectsState extends State<Projects> {
                       SizedBox(
                         height: height10,
                       ),
-                      SmallText(
+                      const SmallText(
                         // width10: width10,
                         text: "15th August Celebrations",
                         color: AppColors.primaryBlack,
@@ -222,7 +222,7 @@ class _ProjectsState extends State<Projects> {
                   ),
                   child: Column(
                     children: [
-                      DualColorText(
+                      const DualColorText(
                         text1: "",
                         text2: "2nd Apr, 2021",
                         color: AppColors.primaryBlack,
@@ -233,7 +233,7 @@ class _ProjectsState extends State<Projects> {
                       ),
 
                       // intro text description
-                      SmallText(
+                      const SmallText(
                         // width10: width10,
                         text: "Food Packet Distribution",
                         color: AppColors.primaryBlack,
@@ -270,7 +270,7 @@ class _ProjectsState extends State<Projects> {
                   ),
                   child: Column(
                     children: [
-                      DualColorText(
+                      const DualColorText(
                         text1: "",
                         text2: "3rd Feb, 2021",
                         color: AppColors.primaryBlack,
@@ -279,7 +279,7 @@ class _ProjectsState extends State<Projects> {
                       SizedBox(
                         height: height10,
                       ),
-                      SmallText(
+                      const SmallText(
                         // width10: width10,
                         text: "Distribution of meals",
                         color: AppColors.primaryBlack,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/dimensions.dart';
 import 'package:hamarasehyog/views/main_ui_page/texts/dual_color_text.dart';
@@ -28,7 +27,7 @@ class Bank extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      DualColorText(
+                      const DualColorText(
                         text1: "Our ",
                         text2: "Bank Details",
                         color: AppColors.primaryBlack,

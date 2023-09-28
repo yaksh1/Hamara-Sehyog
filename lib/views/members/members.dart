@@ -2,11 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
-import 'package:hamarasehyog/components/text_form.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/dimensions.dart';
 import 'package:hamarasehyog/views/main_ui_page/texts/paragraph_text.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class Members extends StatefulWidget {
   const Members({super.key});

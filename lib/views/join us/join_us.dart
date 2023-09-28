@@ -2,12 +2,12 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
+import 'package:hamarasehyog/components/email_text_field.dart';
 import 'package:hamarasehyog/components/error_dialog.dart';
-import 'package:hamarasehyog/components/my_snackbar.dart';
+import 'package:hamarasehyog/components/name_text_field.dart';
+import 'package:hamarasehyog/components/phone_text_field.dart';
 import 'package:hamarasehyog/components/text_form.dart';
-import 'package:hamarasehyog/services/auth/auth_exceptions.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/dimensions.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -20,6 +20,10 @@ class JoinUs extends StatefulWidget {
 }
 
 class _JoinUsState extends State<JoinUs> {
+
+    //! <---- global form key -----> //
+  final _formKey = GlobalKey<FormState>();
+
   get width10 => Dimensions.width10;
   get height10 => Dimensions.height10;
   get radius10 => Dimensions.radius10;
@@ -71,32 +75,21 @@ class _JoinUsState extends State<JoinUs> {
                 height: height10 * 4,
               ),
               Form(
+                key: _formKey,
                 child: Column(
                   children: [
-                    TextForm(
-                      controller: _email,
-                      label: Text("E-mail"),
-                      hintText: "E-mail",
-                      icon: Icons.mail_outline_outlined,
+                    //! <---- email field -----> //
+                    EmailTextField(controller: _email),
+                    SizedBox(
+                      height: height10 *2,
                     ),
+                    //! <---- name field -----> //
+                    NameTextField(controller: _name),
                     SizedBox(
                       height: height10 * 2,
                     ),
-                    TextForm(
-                      controller: _name,
-                      label: Text("Name"),
-                      hintText: "Full Name",
-                      icon: Icons.person,
-                    ),
-                    SizedBox(
-                      height: height10 * 2,
-                    ),
-                    TextForm(
-                      controller: _phone,
-                      label: Text("Phone"),
-                      hintText: "Phone",
-                      icon: PhosphorIcons.regular.phone,
-                    ),
+                    //! <---- phone field -----> //
+                    PhoneTextField(controller: _phone),
                     SizedBox(
                       height: height10 * 2,
                     ),
@@ -112,18 +105,20 @@ class _JoinUsState extends State<JoinUs> {
                     SizedBox(
                       width: double.infinity,
                       child: MaterialButton(
-                        onPressed: ()  {
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            
                           String email = _email.text;
                           String phone = _phone.text;
                           String name = _name.text;
                           String message = _message.text;
-                          
+
                           //$ save data to collection
-                           saveJoinUsData(email, name, phone, message);
+                          saveJoinUsData(email, name, phone, message);
                           showErrorDialog(
                               context, "Our team will contact you soon.",
                               title: "Thanks for submitting!");
-                        
+                          }
                         },
                         textColor: AppColors.grey,
                         color: AppColors.primaryBlack,

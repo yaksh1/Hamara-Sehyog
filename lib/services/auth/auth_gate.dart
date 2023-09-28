@@ -16,12 +16,12 @@ class AuthGate extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.active) {
             User? user = snapshot.data;
             if (user == null) {
-              return LogInView();
+              return const LogInView();
             }
             
-            return MainUI();
+            return const MainUI();
           } else {
-            return Scaffold(
+            return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
               ),

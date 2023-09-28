@@ -243,4 +243,5 @@ class _SignUpState extends State<SignUp> {
           .pushNamedAndRemoveUntil(mainUIRoute, (route) => false);
     }
   }
+
 }

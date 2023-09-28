@@ -14,7 +14,7 @@ import 'package:firebase_auth/firebase_auth.dart'
 import 'package:logger/logger.dart';
 
 class FirebaseAuthProvider implements AuthProvider {
-  final GoogleSignIn googleSignIn = new GoogleSignIn();
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   final auth = FirebaseAuth.instance;
   User? userForGoogle;
   @override

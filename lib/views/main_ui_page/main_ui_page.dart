@@ -190,7 +190,7 @@ class _MainUIState extends State<MainUI> {
               SizedBox(
                 height: height10 * 2,
               ),
-              Container(
+              SizedBox(
                 height: height10*50,
                 
                 child: ListView.builder(
@@ -219,8 +219,7 @@ class _MainUIState extends State<MainUI> {
 }
 
 class _buildFocusAreas extends StatelessWidget {
-  _buildFocusAreas({super.key,
-      required this.imageUrl,
+  _buildFocusAreas({required this.imageUrl,
       required this.title,
       required this.desc,
       });
@@ -259,7 +258,6 @@ final String? imageUrl, title, desc;
 
 class _welcome extends StatelessWidget {
   const _welcome({
-    super.key,
     required this.height10,
     required this.width10,
   });
@@ -294,7 +292,6 @@ class _welcome extends StatelessWidget {
 
 class _joinUs extends StatelessWidget {
   const _joinUs({
-    super.key,
     required this.width10,
     required this.height10,
   });
@@ -383,7 +380,6 @@ class _joinUs extends StatelessWidget {
 
 class _About extends StatelessWidget {
   const _About({
-    super.key,
     required this.height10,
     required this.width10,
   });

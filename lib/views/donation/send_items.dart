@@ -25,7 +25,7 @@ class Items extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      DualColorText(
+                      const DualColorText(
                         text1: "Our ",
                         text2: "Address",
                         color: AppColors.primaryBlack,
