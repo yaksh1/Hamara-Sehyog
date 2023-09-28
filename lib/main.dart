@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hamarasehyog/constants/routes.dart';
 import 'package:hamarasehyog/firebase_options.dart';
 import 'package:hamarasehyog/services/auth/auth_service.dart';
+import 'package:hamarasehyog/views/forget_password/forgot_password_otp/forgot_password_otp.dart';
 import 'package:hamarasehyog/views/log_in.dart';
 import 'package:hamarasehyog/views/main_ui_page/main_ui_page.dart';
 import 'package:hamarasehyog/views/sign_up.dart';
@@ -34,6 +35,7 @@ void main() async {
         home: SplashScreen(),
         // home: const Gallery(),
         routes: {
+          'pin': (context) =>  ForgotPasswordOtp(),
           signupRoute: (context) => const SignUp(),
           loginRoute: (context) => const LogInView(), 
           mainUIRoute: (context) => const MainUI(),

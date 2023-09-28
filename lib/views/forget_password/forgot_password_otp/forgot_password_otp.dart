@@ -2,22 +2,28 @@
 
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/components/square_tile.dart';
 import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/image_strings.dart';
+import 'package:hamarasehyog/views/forget_password/forgot_password_phone/forgot_password-phone.dart';
+import 'package:hamarasehyog/views/main_ui_page/main_ui_page.dart';
+import 'package:logger/logger.dart';
 
 import 'package:pinput/pinput.dart';
 
 class ForgotPasswordOtp extends StatelessWidget {
-  final String id;
-  ForgotPasswordOtp({super.key, required this.id});
+  ForgotPasswordOtp({super.key});
   TextEditingController otpcontroller = TextEditingController();
+  final FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    var code = '';
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(),
@@ -56,48 +62,37 @@ class ForgotPasswordOtp extends StatelessWidget {
                   height: 30,
                 ),
                 Pinput(
-                  controller: otpcontroller,
                   length: 6,
-                  onCompleted: (value) async {
-                    log(value);
-                    await AuthService.firebase().verifyCode(id, value);
-
-                    final user = AuthService.firebase().currentUser;
-                    if (user!=null) {
-                      log("done");
-                    }
+                  showCursor: true,
+                  onChanged: (value) {
+                    code = value;
                   },
+                  onCompleted: (pin) => print(pin),
                 ),
-                // OTPTextField(
-                //   length: 6,
-                //   width: MediaQuery.of(context).size.width,
-                //   fieldWidth: 80,
-                //   style: TextStyle(fontSize: 17),
-                //   textFieldAlignment: MainAxisAlignment.spaceAround,
-                //   fieldStyle: FieldStyle.underline,
-                //   onCompleted: (pin) {
-                //     log("Completed: " + pin);
-                //   },
-                // ),
-                // OtpTextField(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   numberOfFields: 6,
-                //   filled: true,
-                //   fillColor: Colors.black.withOpacity(0.1),
-                //   cursorColor: AppColors.primaryBlack,
-                //   focusedBorderColor: AppColors.mainColor,
-                //   onSubmit: (String otp) {
-                //     log(otp);
-                //     AuthService.firebase().verifyCode(id, otp);
-                //   },
-                // ),
                 SizedBox(
                   height: 30,
                 ),
                 SizedBox(
                   width: double.infinity,
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      try {
+                        // Create a PhoneAuthCredential with the code
+                        PhoneAuthCredential credential =
+                            PhoneAuthProvider.credential(
+                                verificationId:
+                                    ForgotPasswordPhoneOption.verify,
+                                smsCode: code);
+
+                        // Sign the user in (or link) with the credential
+                        await auth.signInWithCredential(credential);
+                        Get.to(() => MainUI());
+                      } catch (e) {
+                        Logger().d(code);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text("Wrong otp")));
+                      }
+                    },
                     textColor: AppColors.grey,
                     color: AppColors.primaryBlack,
                     shape: RoundedRectangleBorder(

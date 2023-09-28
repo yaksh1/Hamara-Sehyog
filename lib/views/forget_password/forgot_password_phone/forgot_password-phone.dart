@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
@@ -14,7 +15,7 @@ class ForgotPasswordPhoneOption extends StatefulWidget {
   const ForgotPasswordPhoneOption({
     super.key,
   });
-
+  static String verify = '';
   @override
   State<ForgotPasswordPhoneOption> createState() =>
       _ForgotPasswordPhoneOptionState();
@@ -87,9 +88,20 @@ class _ForgotPasswordPhoneOptionState extends State<ForgotPasswordPhoneOption> {
                       SizedBox(
                         width: double.infinity,
                         child: MaterialButton(
-                          onPressed: () async{
-                           String id =await  AuthService.firebase().verifyNumber(_phoneNumber.text);
-                            Get.to(() => ForgotPasswordOtp(id: id,));
+                          onPressed: () async {
+                            await FirebaseAuth.instance.verifyPhoneNumber(
+                              phoneNumber: "+91${_phoneNumber.text}",
+                              verificationCompleted:
+                                  (PhoneAuthCredential credential) {},
+                              verificationFailed: (FirebaseAuthException e) {},
+                              codeSent:
+                                  (String verificationId, int? resendToken) {
+                                ForgotPasswordPhoneOption.verify = verificationId;
+                                Navigator.pushNamed(context, 'pin');
+                              },
+                              codeAutoRetrievalTimeout:
+                                  (String verificationId) {},
+                            );
                           },
                           textColor: AppColors.grey,
                           color: AppColors.primaryBlack,

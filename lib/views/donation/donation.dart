@@ -6,9 +6,7 @@ import 'package:get/get.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/button.dart';
 import 'package:hamarasehyog/components/email_text_field.dart';
-import 'package:hamarasehyog/components/input_decoration.dart';
 import 'package:hamarasehyog/components/name_text_field.dart';
-import 'package:hamarasehyog/components/text_form.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/dimensions.dart';
 import 'package:hamarasehyog/views/donation/bank_to_bank.dart';
@@ -24,8 +22,7 @@ class Donation extends StatefulWidget {
 }
 
 class _DonationState extends State<Donation> {
-  //! <---- decoration class -----> //
-  MyDecoration decor = MyDecoration();
+
 
   //! <---- global form key -----> //
   final _formKey = GlobalKey<FormState>();
