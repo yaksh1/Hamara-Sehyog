@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/error_dialog.dart';
 import 'package:hamarasehyog/components/my_snackbar.dart';
@@ -13,6 +14,7 @@ import 'package:hamarasehyog/services/auth/auth_exceptions.dart';
 import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/views/forget_password/forgot_pass_option.dart';
+import 'package:hamarasehyog/views/forget_password/forgot_password_mail/forgot_password_mail.dart';
 import 'package:logger/logger.dart';
 
 class LogInView extends StatefulWidget {
@@ -95,8 +97,7 @@ class _LogInViewState extends State<LogInView> {
                     children: [
                       TextButton(
                           onPressed: () {
-                            ForgotPasswordScreen.ForgotPasswordBottomSheet(
-                                context);
+                            Get.to(() => ForgotPasswordMailOption());
                           },
                           child: SmallGreyText(text: "Forgot Password?"))
                     ],

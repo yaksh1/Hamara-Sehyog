@@ -80,7 +80,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                     setState(() {
                       newPassword = _newPassword.text;
                     });
-                    changePassword();
+                    AuthService.firebase().changePassword();
                   }
                 },
                 textColor: AppColors.grey,
@@ -100,23 +100,5 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
     ));
   }
 
-  final user = FirebaseAuth.instance.currentUser;
-  Future changePassword() async {
-    try {
-      await user!.updatePassword(newPassword);
-      AuthService.firebase().logOut();
-      MySnackBar().mySnackBar(
-        header: "Password Changed",
-        content: "Your Password has been changed, login again!",
-      );
-      Get.to(() => LogInView());
-    } catch (e) {
-      MySnackBar().mySnackBar(
-        header: "Error",
-        content: e.toString(),
-        bgColor: Colors.red.shade200,
-        borderColor: Colors.red,
-      );
-    }
-  }
+
 }

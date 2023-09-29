@@ -25,4 +25,7 @@ abstract class AuthProvider {
 
   Future<User?> signInWithGoogle();
 
+  Future passwordReset({required String email});
+  Future changePassword();
+
 }

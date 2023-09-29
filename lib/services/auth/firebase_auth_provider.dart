@@ -2,8 +2,10 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hamarasehyog/components/my_snackbar.dart';
 import 'package:hamarasehyog/firebase_options.dart';
 import 'package:hamarasehyog/services/auth/auth_provider.dart';
 import 'package:hamarasehyog/services/auth/auth_user.dart';
@@ -11,12 +13,15 @@ import 'package:hamarasehyog/services/auth/auth_exceptions.dart';
 
 import 'package:firebase_auth/firebase_auth.dart'
     show FirebaseAuth, FirebaseAuthException, GoogleAuthProvider, PhoneAuthCredential, PhoneAuthProvider, User, UserCredential;
+import 'package:hamarasehyog/views/log_in.dart';
 import 'package:logger/logger.dart';
 
 class FirebaseAuthProvider implements AuthProvider {
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final auth = FirebaseAuth.instance;
   User? userForGoogle;
+  var newPassword = '';
+
   @override
   Future<AuthUser> createUser({
     required String email,
@@ -238,5 +243,47 @@ class FirebaseAuthProvider implements AuthProvider {
       'email': email,
       'name': username,
     });
+  }
+
+    //! <---- password reset email -----> //
+  @override
+  Future passwordReset({required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      MySnackBar().mySnackBar(
+          header: "Email Sent",
+          content:
+              "Password reset link sent. Please check your email inbox and spam.",
+          bgColor: Colors.green.shade100,
+          borderColor: Colors.green);
+      Get.to(() => const LogInView());
+    } on FirebaseAuthException catch (e) {
+      MySnackBar().mySnackBar(
+          header: "Error",
+          content: e.code,
+          bgColor: Colors.red.shade100,
+          borderColor: Colors.red);
+    }
+  }
+  
+  @override
+  Future changePassword() async {
+    final user = auth.currentUser;
+    try {
+      await user!.updatePassword(newPassword);
+      logOut();
+      MySnackBar().mySnackBar(
+        header: "Password Changed",
+        content: "Your Password has been changed, login again!",
+      );
+      Get.to(() => LogInView());
+    } catch (e) {
+      MySnackBar().mySnackBar(
+        header: "Error",
+        content: e.toString(),
+        bgColor: Colors.red.shade100,
+        borderColor: Colors.red,
+      );
+    }
   }
 }

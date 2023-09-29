@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
+import 'package:hamarasehyog/components/my_snackbar.dart';
 import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/components/square_tile.dart';
 import 'package:hamarasehyog/services/auth/auth_service.dart';
@@ -68,7 +69,7 @@ class ForgotPasswordOtp extends StatelessWidget {
                   onChanged: (value) {
                     code = value;
                   },
-                  onCompleted: (pin) => print(pin),
+                  onCompleted: (pin) => Logger().d(pin),
                 ),
                 SizedBox(
                   height: 30,
@@ -89,9 +90,12 @@ class ForgotPasswordOtp extends StatelessWidget {
                         await auth.signInWithCredential(credential);
                         Get.to(() => ResetPasswordView());
                       } catch (e) {
-                        Logger().d(code);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("Wrong otp")));
+                        MySnackBar().mySnackBar(
+                          header: "Error",
+                          content: "Wrong OTP",
+                          bgColor: Colors.red.shade200,
+                          borderColor: Colors.red,
+                        );
                       }
                     },
                     textColor: AppColors.grey,
