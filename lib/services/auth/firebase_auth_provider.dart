@@ -276,7 +276,7 @@ class FirebaseAuthProvider implements AuthProvider {
         header: "Password Changed",
         content: "Your Password has been changed, login again!",
       );
-      Get.to(() => LogInView());
+      Get.to(() => const LogInView());
     } catch (e) {
       MySnackBar().mySnackBar(
         header: "Error",

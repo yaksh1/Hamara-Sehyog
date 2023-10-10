@@ -1,14 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hamarasehyog/components/big_tex.dart';
-import 'package:hamarasehyog/components/my_snackbar.dart';
 import 'package:hamarasehyog/components/password_text_field.dart';
-import 'package:hamarasehyog/components/text_form.dart';
 import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
-import 'package:hamarasehyog/views/log_in.dart';
 
 class ResetPasswordView extends StatefulWidget {
   const ResetPasswordView({super.key});

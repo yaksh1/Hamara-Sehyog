@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +8,10 @@ import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/my_snackbar.dart';
 import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/components/square_tile.dart';
-import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
 import 'package:hamarasehyog/utils/image_strings.dart';
 import 'package:hamarasehyog/views/forget_password/forgot_password_phone/forgot_password-phone.dart';
 import 'package:hamarasehyog/views/forget_password/reset%20password/reset_password_page.dart';
-import 'package:hamarasehyog/views/main_ui_page/main_ui_page.dart';
 import 'package:logger/logger.dart';
 
 import 'package:pinput/pinput.dart';

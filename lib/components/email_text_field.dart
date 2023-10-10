@@ -27,7 +27,7 @@ class EmailTextField extends StatelessWidget {
         autocorrect: false,
         decoration: decor.getDecoration(
             icon: Icons.mail_outline_outlined,
-            label: Text("Email"),
+            label: const Text("Email"),
             hintText: "Email"));
   }
 }

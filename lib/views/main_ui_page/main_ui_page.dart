@@ -101,8 +101,8 @@ class _MainUIState extends State<MainUI> {
                   Get.to(() => Members());
                 case MenuAction.projects:
                   Get.to(() => Projects());
-                case MenuAction.joinUs:
-                  Get.to(() => JoinUs());
+                // case MenuAction.joinUs:
+                //   Get.to(() => JoinUs());
                 case MenuAction.gallery:
                   Get.to(() => Gallery());
                 case MenuAction.contactUs:
@@ -117,8 +117,8 @@ class _MainUIState extends State<MainUI> {
                     value: MenuAction.gallery, child: Text("Gallery")),
                 const PopupMenuItem(
                     value: MenuAction.members, child: Text("Members")),
-                const PopupMenuItem(
-                    value: MenuAction.joinUs, child: Text("Join Us")),
+                // const PopupMenuItem(
+                //     value: MenuAction.joinUs, child: Text("Join Us")),
                 const PopupMenuItem(
                     value: MenuAction.aboutUs, child: Text("About Us")),
                 const PopupMenuItem(

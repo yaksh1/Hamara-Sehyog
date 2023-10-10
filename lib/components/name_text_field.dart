@@ -26,6 +26,6 @@ class NameTextField extends StatelessWidget {
           return null;
         },
         decoration: decor.getDecoration(
-            icon: Icons.person, label: Text("Name"), hintText: "Name"));
+            icon: Icons.person, label: const Text("Name"), hintText: "Name"));
   }
 }

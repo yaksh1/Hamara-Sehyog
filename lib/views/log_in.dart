@@ -7,13 +7,13 @@ import 'package:hamarasehyog/components/big_tex.dart';
 import 'package:hamarasehyog/components/error_dialog.dart';
 import 'package:hamarasehyog/components/my_snackbar.dart';
 import 'package:hamarasehyog/components/small_grey_text.dart';
+import 'package:hamarasehyog/components/small_text.dart';
 import 'package:hamarasehyog/components/square_tile.dart';
 import 'package:hamarasehyog/components/text_fields.dart';
 import 'package:hamarasehyog/constants/routes.dart';
 import 'package:hamarasehyog/services/auth/auth_exceptions.dart';
 import 'package:hamarasehyog/services/auth/auth_service.dart';
 import 'package:hamarasehyog/utils/colors.dart';
-import 'package:hamarasehyog/views/forget_password/forgot_pass_option.dart';
 import 'package:hamarasehyog/views/forget_password/forgot_password_mail/forgot_password_mail.dart';
 import 'package:logger/logger.dart';
 
@@ -105,7 +105,7 @@ class _LogInViewState extends State<LogInView> {
                 ),
 
                 // ---- white spaces ---- //
-                SizedBox(height: 60),
+                SizedBox(height: 40),
 
                 // --- log in button ---- //
                 Padding(
@@ -193,28 +193,32 @@ class _LogInViewState extends State<LogInView> {
                 // white spaces
                 SizedBox(height: 50),
 
-                // ---- log in options ---- //
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15.0),
-                      child: GestureDetector(
-                        onTap: _googleLogIn,
-                        child: SquareTile(
-                          imagePath: 'assets/images/google.png',
-                          height: 40,
-                        ),
-                      ),
+                // ---- google log in ---- //
+                GestureDetector(
+                  onTap: _googleLogIn,
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                    width: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: Colors.grey.shade200,
+                      border: Border.all(),
+                
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15.0),
-                      child: SquareTile(
-                        imagePath: 'assets/images/facebook.png',
-                        height: 40,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SquareTile(
+                            imagePath: 'assets/images/google.png',
+                            height: 25,
+                          ),
+                          SizedBox(width: 10,),
+                        SmallText(text: "Sign in with Google")
+                      ],
                     ),
-                  ],
+                  ),
                 ),
 
                 // white spaces

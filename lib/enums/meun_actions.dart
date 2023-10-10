@@ -3,7 +3,7 @@ enum MenuAction {
   gallery,
   members,
   projects,
-  joinUs,
+  // joinUs,
   contactUs,
   logout,
 }
